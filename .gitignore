@@ -1,0 +1,46 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.log
+
+# Large files (if any)
+*.pdf
+*.zip
+*.tar.gz
+
+# Node (if using any JS tools)
+node_modules/
+
+# Database files (if generated)
+*.db
+*.sqlite
+
+# Vector databases
+chroma_db/
+*.bin
+
+# OS files
+Thumbs.db
