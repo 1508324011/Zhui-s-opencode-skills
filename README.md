@@ -1,97 +1,179 @@
 # Zhui's OpenCode Skills Collection
 
-Personal collection of 146 scientific skills for OpenCode AI assistant, migrated from Claude Scientific Skills.
+Personal collection of 146 scientific skills + Superpowers plugin for OpenCode AI assistant.
 
-## 📊 Skills Overview
+## 📊 What's Included
 
-This repository contains **146 specialized skills** covering:
+### 🎯 Scientific Skills (146 total)
 
-### 🧬 Bioinformatics & Genomics (16+)
-- biopython, scanpy, scvi-tools, anndata, arboreto
-- pysam, deeptools, gget, scikit-bio
-- Single-cell analysis, genomics tools, phylogenetics
+#### 🧬 Bioinformatics & Genomics (16+)
+biopython, scanpy, scvi-tools, anndata, arboreto, pysam, deeptools, gget, scikit-bio
 
-### 🧪 Cheminformatics & Drug Discovery (11+)
-- rdkit, datamol, deepchem, torchdrug
-- diffdock, molfeat, medchem, pytdc
-- Molecular property prediction, virtual screening
+#### 🧪 Cheminformatics & Drug Discovery (11+)
+rdkit, datamol, deepchem, torchdrug, diffdock, molfeat, medchem, pytdc
 
-### 🔬 Proteomics & Mass Spectrometry (2)
-- pyopenms, matchms
+#### 🔬 Proteomics & Mass Spectrometry (2)
+pyopenms, matchms
 
-### 🏥 Clinical Research & Precision Medicine (12+)
-- clinicaltrials-database, clinvar-database
-- pyhealth, clinical-decision-support
-- Healthcare AI, clinical documentation
+#### 🏥 Clinical Research & Precision Medicine (12+)
+clinicaltrials-database, clinvar-database, pyhealth, clinical-decision-support
 
-### 🤖 Machine Learning & AI (15+)
-- pytorch-lightning, transformers, scikit-learn
-- stable-baselines3, pufferlib, torch-geometric
-- Deep learning, reinforcement learning
+#### 🤖 Machine Learning & AI (15+)
+pytorch-lightning, transformers, scikit-learn, stable-baselines3, pufferlib, torch-geometric
 
-### 📊 Data Analysis & Visualization (14+)
-- matplotlib, seaborn, plotly
-- networkx, umap-learn
-- Scientific visualization
+#### 📊 Data Analysis & Visualization (14+)
+matplotlib, seaborn, plotly, networkx, umap-learn
 
-### 🔮 Materials Science & Chemistry (7)
-- pymatgen, cobrapy, cirq, pennylane, qiskit
+#### 🔮 Materials Science & Chemistry (7)
+pymatgen, cobrapy, cirq, pennylane, qiskit
 
-### 📚 Scientific Databases (28+)
-- pubmed-database, chembl-database, uniprot-database
-- openalex-database, string-database, kegg-database
-- Reactome, Open Targets, COSMIC, ClinPGx
+#### 📚 Scientific Databases (28+)
+pubmed-database, chembl-database, uniprot-database, openalex-database, string-database, kegg-database
 
-### 🔬 Multi-omics & Systems Biology (5+)
-- decoupler (NEW), denario, hypogenic
+#### 🔬 Multi-omics & Systems Biology (5+)
+decoupler, denario, hypogenic, cytoscape, squidpy, string-app
 
-### 🎓 Research Methodology & Planning (8+)
-- literature-review, scientific-writing
-- hypothesis-generation, research-grants
+#### 🎓 Research Methodology & Planning (8+)
+literature-review, scientific-writing, hypothesis-generation, research-grants
 
-### 📚 Scientific Communication (20+)
-- latex-posters, scientific-slides
-- citation-management, infographics
+#### 📚 Scientific Communication (20+)
+latex-posters, scientific-slides, citation-management, infographics
 
-### 🔧 Additional Tools
-- langchain (NEW), cytoscape (NEW), squidpy (NEW)
-- string-app (NEW)
+#### 🔧 Additional Tools
+langchain
 
-## 🚀 Installation
+### ⚡ Superpowers Plugin
 
-### Method 1: Direct Copy
+Advanced capabilities from [obra/superpowers](https://github.com/obra/superpowers):
+- **brainstorming** - Creative ideation and exploration
+- **dispatching-parallel-agents** - Execute multiple subagents concurrently
+- **executing-plans** - Systematic plan execution
+- **finishing-a-development-branch** - Branch completion workflow
+- **receiving-code-review** - Handle code review feedback
+- **requesting-code-review** - Request and manage code reviews
+- **subagent-driven-development** - AI-driven development workflow
+- **systematic-debugging** - Methodical debugging approach
+- **test-driven-development** - TDD workflow
+- **using-git-worktrees** - Advanced git worktree management
+- **using-superpowers** - Guide to using superpowers
+- **verification-before-completion** - Pre-completion verification
+- **writing-plans** - Plan writing methodology
+- **writing-skills** - Skill creation guide
+
+## 🚀 Quick Setup (New Device)
+
+### One-Command Installation
+
 ```bash
-# Clone this repository
-git clone https://github.com/1508324011/Zhui-s-opencode-skills.git
-
-# Copy to OpenCode skills directory
-cp -r Zhui-s-opencode-skills/* ~/.config/opencode/skills/
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/1508324011/Zhui-s-opencode-skills/main/install.sh)"
 ```
 
-### Method 2: Symlink (Recommended for updates)
+Or manually:
+
 ```bash
+# 1. Clone this repository
 git clone https://github.com/1508324011/Zhui-s-opencode-skills.git ~/zhui-opencode-skills
-ln -s ~/zhui-opencode-skills/* ~/.config/opencode/skills/
+
+# 2. Copy skills to OpenCode directory
+mkdir -p ~/.config/opencode/skills
+cp -r ~/zhui-opencode-skills/skills/* ~/.config/opencode/skills/
+
+# 3. Install Superpowers plugin
+git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers
+
+# 4. Create plugin symlink
+mkdir -p ~/.config/opencode/plugins
+ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js ~/.config/opencode/plugins/superpowers.js
+
+# 5. Create skills symlink for superpowers
+ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpowers
 ```
 
-## 📖 Usage
+### Verification
 
-After installation, OpenCode will automatically detect and use these skills when relevant.
+Restart OpenCode and verify installation:
 
-Example usage in OpenCode:
 ```
-# The assistant will automatically load appropriate skills
-"Analyze this RNA-seq data with scanpy"
-"Search for RBP interactions in STRING database"
-"Create a literature review about phase separation"
+do you have superpowers?
 ```
 
-## 🔄 Updates
+The assistant should respond confirming it has superpowers capabilities.
 
-To update skills from this repository:
+## 📁 Repository Structure
+
+```
+Zhui-s-opencode-skills/
+├── README.md              # This file
+├── install.sh             # Automated installation script
+├── skills/                # 146 scientific skills
+│   ├── biopython/
+│   ├── scanpy/
+│   ├── rdkit/
+│   └── ... (143 more)
+└── superpowers/           # Reference to obra/superpowers
+    └── (cloned separately)
+```
+
+## 🔄 Keeping Updated
+
+### Update Skills
 ```bash
 cd ~/zhui-opencode-skills
 git pull origin main
+# Re-copy if needed
+cp -r skills/* ~/.config/opencode/skills/
+```
+
+### Update Superpowers
+```bash
+cd ~/.config/opencode/superpowers
+git pull
+```
+
+## 📖 Usage Examples
+
+After installation, OpenCode will automatically detect and use these skills:
+
+```
+# Scientific analysis
+"Analyze this RNA-seq data with scanpy"
+"Search for RBP interactions in STRING database"
+
+# Research workflow
+"Create a literature review about phase separation"
+"Help me write a hypothesis for my experiment"
+
+# Development with superpowers
+"Use systematic debugging to find the bug in this code"
+"Create a development plan for this feature"
+"Request a code review for these changes"
+```
+
+## 🛠️ Troubleshooting
+
+### Skills not detected
+```bash
+# Check skill files exist
+ls ~/.config/opencode/skills/
+
+# Verify symlinks (if using symlink method)
+ls -la ~/.config/opencode/skills/
+```
+
+### Superpowers not loading
+```bash
+# Check plugin symlink
+ls -la ~/.config/opencode/plugins/superpowers.js
+
+# Verify source exists
+ls ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js
+```
+
+### Permission issues
+```bash
+# Fix permissions
+chmod -R 755 ~/.config/opencode/skills/
+chmod -R 755 ~/.config/opencode/plugins/
 ```
 
 ## 📝 Skill Format
@@ -108,23 +190,20 @@ skill-name/
 └── references/       # Optional reference materials
 ```
 
-## 🏆 Original Source
+## 🏆 Credits
 
-These skills were originally from [K-Dense-AI/claude-scientific-skills](https://github.com/K-Dense-AI/claude-scientific-skills) and adapted for OpenCode compatibility.
+- **Scientific Skills**: Originally from [K-Dense-AI/claude-scientific-skills](https://github.com/K-Dense-AI/claude-scientific-skills)
+- **Superpowers Plugin**: [obra/superpowers](https://github.com/obra/superpowers)
 
 ## 📄 License
 
-Each skill has its own license specified in the `license` field of its SKILL.md file. The repository structure follows the original MIT license where applicable.
-
-## 🤝 Contributing
-
-This is a personal collection. Feel free to fork and customize for your own use!
+Each skill has its own license specified in its SKILL.md. Repository structure follows MIT license where applicable.
 
 ## 📊 Statistics
 
-- **Total Skills**: 146
-- **Categories**: 15+
-- **Last Updated**: 2025-02-14
+- **Total Skills**: 146 scientific + 12 superpowers
+- **Categories**: 15+ scientific domains
+- **Last Updated**: 2025-02-16
 - **Compatibility**: OpenCode
 
 ---
