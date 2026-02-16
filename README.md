@@ -163,6 +163,32 @@ Chain multiple skills for complex workflows:
  finally use cytoscape to visualize the network"
 ```
 
+### Strategy 6: Let AI Guide You (Most Important!)
+
+**In real-world problem solving, communicate with OpenCode and let AI tell you how to leverage skills and superpowers!**
+
+```
+"I want to analyze this metabolomics dataset but don't know where to start. 
+ What skills do you have that can help? What's the best workflow?"
+
+"I need to debug this complex bioinformatics pipeline. 
+ Which superpowers should I use?"
+
+"I'm planning a multi-omics study. Can you suggest a complete 
+ analysis strategy using available skills?"
+
+"I have this single-cell RNA-seq data with batch effects across 3 conditions.
+ Walk me through the best approach step by step."
+```
+
+OpenCode will analyze your specific problem and recommend:
+- Which skills to use
+- The optimal execution order
+- Which superpowers can enhance the workflow
+- Step-by-step implementation plan
+
+
+
 ## 🔬 Real-World Usage Examples
 
 ### Example 1: Writing a Review Paper from Scratch
