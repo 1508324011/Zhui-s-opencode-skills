@@ -99,6 +99,178 @@ do you have superpowers?
 
 The assistant should respond confirming it has superpowers capabilities.
 
+## 📖 Usage Strategies
+
+### Strategy 1: Automatic Skill Detection
+
+**Principle**: OpenCode automatically detects conversation content and loads matching skills.
+
+**Best Practice**: Be specific about your domain and tools
+
+```
+❌ Less effective: "Help me analyze this data"
+✅ More effective: "I have an RNA-seq count matrix. I need QC, 
+    normalization, clustering, and differential expression analysis 
+    to identify marker genes for each cluster"
+    
+→ Auto-loads: scanpy, pydeseq2, scientific-visualization
+```
+
+### Strategy 2: Superpowers for Complex Workflows
+
+| Superpower | When to Use | Example Scenario |
+|------------|-------------|------------------|
+| `brainstorming` | Need creativity/exploration | "Brainstorm hypotheses for my experiment" |
+| `writing-plans` | Large task breakdown | "Create a 3-day analysis plan" |
+| `systematic-debugging` | Code issues | "Debug this error systematically" |
+| `dispatching-parallel-agents` | Parallel tasks | "Analyze these 5 datasets simultaneously" |
+| `subagent-driven-development` | Complex development | "Develop a literature crawler tool" |
+| `requesting-code-review` | Code review | "Review this code quality" |
+| `test-driven-development` | Need tests | "Write TDD approach for this project" |
+| `verification-before-completion` | Quality check | "Verify all requirements before finishing" |
+
+### Strategy 3: Combining Skills + Superpowers (Most Powerful)
+
+**Standard Workflow for Complex Research Tasks**:
+
+```
+1. brainstorming → Explore ideas and hypotheses
+2. writing-plans → Create detailed execution plan
+3. 146 scientific skills → Execute domain-specific analysis
+4. verification-before-completion → Validate results
+5. scientific-writing → Document findings
+```
+
+### Strategy 4: Explicit Skill Requests
+
+Ask OpenCode to use specific skills explicitly:
+
+```
+"Use the hypothesis-generation skill to build hypotheses for this experiment"
+
+"Use literature-review skill to search recent 5-year literature on phase separation"
+
+"Use scientific-critical-thinking to evaluate the credibility of this conclusion"
+```
+
+### Strategy 5: Skill Chaining
+
+Chain multiple skills for complex workflows:
+
+```
+"First use gget to quickly query P53 gene info,
+ then use string-database to find its interaction proteins,
+ finally use cytoscape to visualize the network"
+```
+
+## 🔬 Real-World Usage Examples
+
+### Example 1: Writing a Review Paper from Scratch
+
+```
+User: "I want to write a review about 'phase-separation proteins in RNA splicing'"
+
+OpenCode automatically invokes:
+├── literature-review → Systematic literature search
+├── openalex-database → Retrieve latest papers from OpenAlex
+├── string-database → Find protein-protein interactions
+├── scientific-brainstorming → Build paper framework
+├── scientific-writing → Write each section
+├── scientific-visualization → Create publication-ready figures
+└── citation-management → Manage references
+
+Superpowers enhance:
+├── writing-plans → Create writing schedule
+├── executing-plans → Execute according to plan
+└── verification-before-completion → Final quality check
+```
+
+### Example 2: Bioinformatics Analysis Pipeline
+
+```
+User: "I have single-cell RNA-seq data and want to:
+1. QC and filtering
+2. Clustering analysis
+3. Find marker genes
+4. Pathway enrichment"
+
+Automatic skill chain:
+scanpy (QC/clustering)
+  → decoupler (pathway activity inference)
+  → reactome-database (pathway database query)
+  → scientific-visualization (publication-ready figures)
+  → umap-learn (dimensionality reduction visualization)
+```
+
+### Example 3: Drug Discovery Project
+
+```
+User: "Design small molecule inhibitors targeting MDM2-p53 interaction"
+
+Skill combination:
+├── rdkit/datamol → Molecular manipulation
+├── chembl-database → Find existing inhibitors
+├── zinc-database → Virtual screening library
+├── diffdock → Molecular docking
+├── deepchem → Property prediction
+├── medchem → Medicinal chemistry filtering
+└── scientific-schematics → Create mechanism diagrams
+```
+
+## 💡 Pro Tips
+
+### 1. Use Domain Keywords
+
+Include professional terminology in questions to trigger relevant skills:
+
+```
+✅ "Use scanpy for batch effect correction"
+✅ "Analyze crystal structure with pymatgen"
+✅ "Flux balance analysis with cobrapy"
+✅ "Batch integration using scvi-tools"
+```
+
+### 2. Let AI Guide You
+
+**Most Important Strategy**: In actual problem-solving, communicate with OpenCode and let AI tell you how to leverage skills and superpowers!
+
+```
+"I want to analyze this metabolomics dataset but don't know where to start. 
+ What skills do you have that can help? What's the best workflow?"
+
+"I need to debug this complex bioinformatics pipeline. 
+ Which superpowers should I use?"
+
+"I'm planning a multi-omics study. Can you suggest a complete 
+ analysis strategy using available skills?"
+```
+
+OpenCode will analyze your specific problem and recommend:
+- Which skills to use
+- The optimal execution order
+- Which superpowers can enhance the workflow
+- Step-by-step implementation plan
+
+### 3. Daily Research Workflow
+
+```
+Morning:
+├── "Check today's literature updates" → biorxiv-database
+└── "Summarize these 3 relevant papers" → markitdown + scientific-writing
+
+Lab work:
+├── "Design this PCR experiment" → hypothesis-generation
+└── "Record experimental steps" → protocolsio-integration
+
+Analysis:
+├── "Analyze the generated data" → [relevant analysis skills]
+└── "Create result figures" → scientific-visualization
+
+Writing:
+├── "Summarize today's progress" → scientific-writing
+└── "Plan tomorrow's work" → writing-plans
+```
+
 ## 📁 Repository Structure
 
 ```
@@ -128,25 +300,6 @@ cp -r skills/* ~/.config/opencode/skills/
 ```bash
 cd ~/.config/opencode/superpowers
 git pull
-```
-
-## 📖 Usage Examples
-
-After installation, OpenCode will automatically detect and use these skills:
-
-```
-# Scientific analysis
-"Analyze this RNA-seq data with scanpy"
-"Search for RBP interactions in STRING database"
-
-# Research workflow
-"Create a literature review about phase separation"
-"Help me write a hypothesis for my experiment"
-
-# Development with superpowers
-"Use systematic debugging to find the bug in this code"
-"Create a development plan for this feature"
-"Request a code review for these changes"
 ```
 
 ## 🛠️ Troubleshooting
