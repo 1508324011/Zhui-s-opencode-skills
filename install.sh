@@ -70,9 +70,18 @@ fi
 # Setup superpowers symlinks if superpowers is installed
 if [ -d "$SUPERPOWERS_DIR/.opencode/plugins" ]; then
     mkdir -p "$HOME/.config/opencode/plugins"
+    
+    # Remove old incorrect plugin file if exists
+    if [ -f "$HOME/.config/opencode/plugins/superpower.js" ]; then
+        echo -e "${YELLOW}Removing old plugin file (superpower.js)${NC}"
+        rm -f "$HOME/.config/opencode/plugins/superpower.js"
+    fi
+    
+    # Create correct symlinks
     ln -sf "$SUPERPOWERS_DIR/.opencode/plugins/superpowers.js" "$HOME/.config/opencode/plugins/superpowers.js" 2>/dev/null || true
     ln -sf "$SUPERPOWERS_DIR/skills" "$SKILLS_DIR/superpowers" 2>/dev/null || true
     echo -e "${GREEN}✓ Superpowers plugin linked${NC}"
+    echo -e "${YELLOW}Note: Plugin filename is 'superpowers.js' (with 's')${NC}"
 fi
 
 # Count installed skills

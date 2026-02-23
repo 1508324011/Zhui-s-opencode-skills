@@ -33,6 +33,40 @@ cd Zhui-s-opencode-skills
 ./install.sh
 ```
 
+### Configure Custom Provider (e.g., 百炼 Coding Plan)
+
+1. **Copy the example config:**
+   ```bash
+   cp config/opencode.json.example ~/.config/opencode/opencode.json
+   ```
+
+2. **Edit the config and replace `YOUR_API_KEY`:**
+   ```bash
+   nano ~/.config/opencode/opencode.json
+   # or
+   vim ~/.config/opencode/opencode.json
+   ```
+
+3. **Restart OpenCode** to apply the configuration.
+
+### Superpowers Plugin Setup
+
+The install script will automatically set up Superpowers. Manual setup:
+
+```bash
+# Clone superpowers repository
+git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers
+
+# Create symlinks
+mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills
+ln -sf ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js ~/.config/opencode/plugins/superpowers.js
+ln -sf ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpowers
+
+# Restart OpenCode
+```
+
+**Note:** The plugin file should be named `superpowers.js` (with 's'), not `superpower.js`.
+
 ## 📚 Skill Categories
 
 ### 1. 🔬 Bioinformatics & Genomics (32 skills)
@@ -148,6 +182,37 @@ git push
 ## 📖 Complete Skill List
 
 See [SKILLS.md](./SKILLS.md) for the complete catalog.
+
+## ⚙️ Configuration Guide
+
+### Custom Provider Setup
+
+This repository includes an example configuration for custom providers (like 百炼 Coding Plan):
+
+**File:** `config/opencode.json.example`
+
+**To use:**
+1. Copy the example to your OpenCode config directory
+2. Replace `YOUR_API_KEY` with your actual API key
+3. Restart OpenCode
+
+**Supported Models in Example:**
+- `qwen3.5-plus` - General purpose model with thinking
+- `qwen3-max-2026-01-23` - Latest Qwen3 Max with thinking
+- `qwen3-coder-plus` - Optimized for coding tasks
+- `qwen3-coder-next` - Next-generation coder model
+
+### Common Configuration Issues
+
+**1. Plugin not loading:**
+- Check that the file is named `superpowers.js` (with 's')
+- Verify symlinks: `ls -la ~/.config/opencode/plugins/`
+- Check OpenCode version: `opencode --version`
+
+**2. Provider configuration not working:**
+- Ensure `opencode.json` is in `~/.config/opencode/`
+- Validate JSON syntax
+- Check that the provider npm package is installed
 
 ## 📄 License
 
