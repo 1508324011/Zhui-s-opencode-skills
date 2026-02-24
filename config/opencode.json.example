@@ -1,12 +1,18 @@
+# 百炼平台 Coding Plan 配置示例
+# 使用方法：
+# 1. 复制此文件到 ~/.config/opencode/opencode.json
+# 2. 将 YOUR_API_KEY 替换为你的实际 API Key
+# 3. 重启 OpenCode
+
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "bailian-coding-plan-test": {
+    "bailian-coding-plan": {
       "npm": "@ai-sdk/anthropic",
       "name": "Model Studio Coding Plan",
       "options": {
         "baseURL": "https://coding.dashscope.aliyuncs.com/apps/anthropic/v1",
-        "apiKey": "YOUR_API_KEY"
+        "apiKey": "YOUR_API_KEY_HERE"
       },
       "models": {
         "qwen3.5-plus": {
@@ -35,5 +41,8 @@
         }
       }
     }
-  }
+  },
+  "plugin": [
+    "oh-my-opencode@latest"
+  ]
 }

@@ -1,0 +1,32 @@
+# Oh My OpenCode 配置
+oh-my-opencode.json
+
+# 包含 API Key 的配置文件（使用模板代替）
+opencode.json
+
+# 认证信息（绝对不要提交！）
+auth.json
+credentials.json
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 日志文件
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 临时文件
+*.tmp
+*.bak
