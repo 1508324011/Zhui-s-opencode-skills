@@ -1,16 +1,89 @@
-# API Keys
+# =============================================================================
+# .gitignore for Zhui's OpenCode Skills
+# =============================================================================
+# 安全：防止敏感信息被提交到 GitHub
+# =============================================================================
+
+# =====================
+# API Keys & Credentials - 绝对不要提交
+# =====================
+opencode.json
+auth.json
+*.env
+*.env.*
+.env.local
+.env.*.local
+*.local
+*.local.*
 *api*key*
 *apikey*
-*.env
-*.local
+*secret*
+*credentials*
+*password*
 
-# 用户配置
-opencode-mem.jsonc.local
+# =====================
+# Certificates & Keys
+# =====================
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.crt
+*.cer
 
-# 日志
+# =====================
+# User-specific Config
+# =====================
+*.local.jsonc
+*.local.json
+config.local.*
+settings.local.*
+
+# =====================
+# IDE & Editor
+# =====================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# =====================
+# Logs & Temp Files
+# =====================
 *.log
 logs/
-
-# 临时文件
+tmp/
+temp/
+.cache/
 *.tmp
 *.bak
+
+# =====================
+# Build & Dependency
+# =====================
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.env/
+.venv/
+vendor/
+target/
+build/
+dist/
+*.egg-info/
+
+# =====================
+# Allowed (Exceptions)
+# =====================
+# 示例配置文件可以提交
+!config/*.example
+!config/*.template
+!config/*.dist
