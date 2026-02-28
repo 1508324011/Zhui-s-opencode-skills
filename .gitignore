@@ -1,0 +1,16 @@
+# API Keys
+*api*key*
+*apikey*
+*.env
+*.local
+
+# 用户配置
+opencode-mem.jsonc.local
+
+# 日志
+*.log
+logs/
+
+# 临时文件
+*.tmp
+*.bak
