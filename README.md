@@ -12,6 +12,7 @@ OpenCode 配置和 Skills 集合 - 用于快速迁移和设置新设备
 - [模型分配](#-模型分配)
 - [Skills](#skills)
 - [Superpowers](#superpowers)
+- [已安装插件](#-已安装插件)
 - [设备迁移](#-设备迁移)
 - [安全提交规范](#-安全提交规范)
 
@@ -189,47 +190,68 @@ Superpowers 插件提供额外的开发增强功能。
 
 ---
 
-## 💡 Oh My OpenCode 使用指南
+## 💾 已安装插件
 
-### 两种工作模式
+此配置使用以下 OpenCode 插件：
 
-#### 1. Ultrawork 模式（快速）
+### Oh My OpenCode
 
-```bash
-ulw [任务描述]
-```
+**仓库**: https://github.com/code-yeongyu/oh-my-opencode
 
-或
+**核心功能**:
+- **多 Agent 编排** — Sisyphus（协调员）、Hephaestus（深度执行）、Prometheus（战略规划）、Oracle（调试）、Librarian（文档搜索）、Explore（代码探索）并行工作
+- **`ultrawork`/`ulw` 命令** — 一键激活所有 Agent 直到任务完成
+- **Hash-anchored 编辑工具** — LINE#ID 内容哈希验证防止编辑错误
+- **LSP + AST-Grep 集成** — IDE 级精度工具（重命名、跳转定义、查找引用、诊断检查）
+- **46 个生命周期 Hooks** — 可扩展的 Hook 系统自定义 Agent 行为
+- **26 个内置工具** — 后台 Agent、tmux 集成、会话管理、技能嵌入 MCPs
+- **内置 MCPs** — Exa（网络搜索）、Context7（官方文档）、Grep.app（GitHub 代码搜索）
+- **Claude Code 兼容** — 完全支持现有 Hooks、Commands、Skills、MCPs 和插件
+- **Ralph Loop** (`/ulw-loop`) — 自引用执行循环直到 100% 任务完成
+- **Todo Enforcer** — 防止 Agent 在任务中途停止
 
-```bash
-ultrawork [任务描述]
-```
+### Dynamic Context Pruning (DCP)
 
-自动执行：探索→研究→实现→验证→完成
+**仓库**: https://github.com/Opencode-DCP/opencode-dynamic-context-pruning
 
-#### 2. Prometheus 模式（精确）
+**核心功能**:
+- **三个核心工具** — `distill`（总结后删除）、`compress`（压缩对话段落）、`prune`（移除已完成内容）
+- **自动去重** — 识别并删除重复的工具调用（如同一文件多次读取）
+- **覆盖写入** — 删除后续被读取的写入工具调用，消除冗余
+- **清除错误** — 在可配置轮次后删除错误工具输入（默认 4 轮）
+- **零成本策略** — 每次请求自动运行 pruning 策略，无额外 token 消耗
+- **可配置上下文限制** — Token 阈值（默认 100,000）或基于百分比的限制
+- **斜杠命令** — `/dcp context`（token 使用分析）、`/dcp stats`（pruning 统计）
+- **保护关键工具** — 保护重要工具（task、todowrite、distill、compress、prune 等）不被删除
 
-1. 按 **Tab** 进入 Prometheus 规划模式
-2. 描述需求，回答澄清问题
-3. 审查生成的计划（`.sisyphus/plans/*.md`）
-4. 运行 `/start-work` 执行
+**效果**:
+- 减少 30-50% token 消耗
+- 防止上下文窗口膨胀
+- 更快的响应速度
+- 更专注的 Agent 注意力
 
-### 常用命令
+### OpenCode Memory
 
-```bash
-# 启动 OpenCode
-opencode
+**仓库**: https://github.com/tickernelz/opencode-mem
 
-# 查看可用模型
-opencode models
+**核心功能**:
+- **本地向量数据库** — SQLite + HNSW (hnswlib-wasm) 快速相似性搜索
+- **持久项目记忆** — 跨会话长期上下文保留（项目级和用户级）
+- **自动用户画像学习** — 基于编码模式和决策构建用户偏好档案
+- **统一记忆 - 提示时间线** — 按时间顺序浏览记忆条目的可视化界面
+- **完整的 Web UI** — 访问 `http://127.0.0.1:4747` 进行可视化记忆浏览和管理
+- **智能提示提取** — 使用可配置 LLM 模型自动从对话中提取和存储相关记忆
+- **12+ 本地嵌入模型** — 支持 Xenova/nomic-embed-text-v1 等嵌入模型
+- **智能去重** — 防止重复记忆条目 clutter 数据库
+- **多 Provider AI 支持** — 兼容 OpenAI、Anthropic 等 LLM Provider
+- **内置隐私保护** — 本地存储确保敏感项目数据不离开本地
+- **可配置自动捕获** — 自动记忆捕获，带语言检测、间隔设置和通知
 
-# 连接 AI 提供商
-opencode auth login
-
-# 或在 TUI 中使用
-/connect
-/models
-```
+**效果**:
+- 跨会话保留架构决策
+- 记住编码偏好和项目约定
+- 避免每次会话从零开始
+- 建立长期项目知识
 
 ---
 
@@ -369,7 +391,21 @@ MIT License
 
 ## 🙏 致谢
 
-- **[Oh My OpenCode](https://github.com/code-yeongyu/oh-my-opencode)** - Oh My OpenCode 框架和命令系统
-- **[OpenCode](https://github.com/anomalyco/opencode)** - AI 辅助科研计算平台
-- **[Superpowers](https://github.com/obra/superpowers)** - Superpowers 插件框架和核心技能
-- **K-Dense Inc. Scientific Skills** - 146 个科学和技术技能
+本配置整合了以下优秀项目和贡献者：
+
+### 框架和平台
+
+- **[Oh My OpenCode](https://github.com/code-yeongyu/oh-my-opencode)** — 多 Agent 编排框架，提供 Sisyphus、Hephaestus、Prometheus 等纪律 Agent 和 `ultrawork` 自动化系统
+- **[OpenCode](https://github.com/anomalyco/opencode)** — AI 辅助科研计算平台，提供基础 Agent 架构和插件系统
+- **[Superpowers](https://github.com/obra/superpowers)** — Superpowers 插件框架，提供 brainstorming、writing-plans、test-driven-development 等核心开发技能
+
+### 核心插件
+
+- **[opencode-dynamic-context-pruning](https://github.com/Opencode-DCP/opencode-dynamic-context-pruning)** — 智能上下文管理插件，通过 distill/compress/prune 工具和自动去重减少 30-50% token 消耗
+- **[opencode-mem](https://github.com/tickernelz/opencode-mem)** — 持久记忆系统，使用本地向量数据库（SQLite + HNSW）实现跨会话长期上下文保留
+
+### 技能集合
+
+- **K-Dense Inc. Scientific Skills** — 146 个科学和技术技能，覆盖生物信息学、药物发现、机器学习、统计分析、可视化、科研写作等领域
+
+---
