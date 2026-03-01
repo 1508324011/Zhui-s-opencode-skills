@@ -27,6 +27,27 @@ OpenCode 配置和 Skills 集合 - 用于快速迁移和设置新设备
 git clone https://github.com/1508324011/Zhui-s-opencode-skills.git
 cd Zhui-s-opencode-skills
 
+# 2. 运行安装脚本（自动安装 npm 插件和 Skills）
+./install.sh
+
+# 3. 复制配置文件并填入 API Key
+cp config/opencode.json.example ~/.config/opencode/opencode.json
+nano ~/.config/opencode/opencode.json  # 替换 YOUR_API_KEY_HERE
+
+# 4. 重启 OpenCode
+opencode
+```
+
+**install.sh 自动安装以下 npm 插件**:
+- `oh-my-opencode@latest` - 多 Agent 编排框架
+- `@tarquinen/opencode-dcp@latest` - 动态上下文修剪
+- `opencode-mem@latest` - 持久记忆系统
+
+```bash
+# 1. 克隆此仓库
+git clone https://github.com/1508324011/Zhui-s-opencode-skills.git
+cd Zhui-s-opencode-skills
+
 # 2. 运行安装脚本
 ./install.sh
 

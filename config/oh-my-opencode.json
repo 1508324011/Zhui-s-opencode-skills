@@ -1,0 +1,72 @@
+// Oh My OpenCode 模型分配配置
+// 此文件不含敏感信息，可以直接提交到版本控制
+// 
+// 模型说明：
+// - bailian-coding-plan-test/qwen3.5-plus: 百炼平台 Qwen3.5 Plus（主力模型）
+// - kimi-for-coding/k2p5: Kimi Coding Plan K2.5（推理/分析）
+//
+// 使用前确保：
+// 1. 已在 opencode.json 中配置百炼平台 API Key
+// 2. 已通过 /connect 命令配置 Kimi For Coding API
+
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "bailian-coding-plan/qwen3.5-plus"
+    },
+    "hephaestus": {
+      "model": "bailian-coding-plan/qwen3.5-plus"
+    },
+    "oracle": {
+      "model": "bailian-coding-plan/kimi-k2.5"
+    },
+    "librarian": {
+      "model": "bailian-coding-plan/qwen3.5-plus"
+    },
+    "explore": {
+      "model": "bailian-coding-plan/MiniMax-M2.5"
+    },
+    "multimodal-looker": {
+      "model": "bailian-coding-plan/qwen3.5-plus"
+    },
+    "prometheus": {
+      "model": "bailian-coding-plan/qwen3.5-plus"
+    },
+    "metis": {
+      "model": "bailian-coding-plan/glm-5"
+    },
+    "momus": {
+      "model": "bailian-coding-plan/qwen3.5-plus"
+    },
+    "atlas": {
+      "model": "bailian-coding-plan/qwen3.5-plus"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "bailian-coding-plan/kimi-k2.5"
+    },
+    "ultrabrain": {
+      "model": "bailian-coding-plan/glm-5"
+    },
+    "deep": {
+      "model": "bailian-coding-plan/glm-5"
+    },
+    "artistry": {
+      "model": "bailian-coding-plan/qwen3.5-plus"
+    },
+    "quick": {
+      "model": "bailian-coding-plan/MiniMax-M2.5"
+    },
+    "unspecified-low": {
+      "model": "bailian-coding-plan/MiniMax-M2.5"
+    },
+    "unspecified-high": {
+      "model": "bailian-coding-plan/qwen3.5-plus"
+    },
+    "writing": {
+      "model": "bailian-coding-plan/kimi-k2.5"
+    }
+  }
+}

@@ -52,6 +52,33 @@ mkdir -p "$TARGET_DIR/plugins"
 mkdir -p "$TARGET_DIR/superpowers"
 
 # =============================================================================
+# 0. 安装核心 npm 插件
+# =============================================================================
+log_info "安装核心 npm 插件..."
+
+# oh-my-opencode
+log_info "安装 oh-my-opencode..."
+npm install -g oh-my-opencode 2>/dev/null || npm install oh-my-opencode 2>/dev/null || log_warning "oh-my-opencode 安装失败，请手动安装"
+
+# @tarquinen/opencode-dcp
+log_info "安装 @tarquinen/opencode-dcp..."
+npm install -g @tarquinen/opencode-dcp 2>/dev/null || npm install @tarquinen/opencode-dcp 2>/dev/null || log_warning "opencode-dcp 安装失败，请手动安装"
+
+# opencode-mem
+log_info "安装 opencode-mem..."
+npm install -g opencode-mem 2>/dev/null || npm install opencode-mem 2>/dev/null || log_warning "opencode-mem 安装失败，请手动安装"
+
+log_success "核心插件安装完成"
+echo ""
+
+# =============================================================================
+# 1. 安装 Skills
+log_info "创建配置目录..."
+mkdir -p "$TARGET_DIR/skills"
+mkdir -p "$TARGET_DIR/plugins"
+mkdir -p "$TARGET_DIR/superpowers"
+
+# =============================================================================
 # 1. 安装 Skills
 # =============================================================================
 log_info "安装 Skills (146 个科学和技术技能)..."
