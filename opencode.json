@@ -6,7 +6,7 @@
       "name": "Model Studio Coding Plan",
       "options": {
         "baseURL": "https://coding.dashscope.aliyuncs.com/apps/anthropic/v1",
-        "apiKey": "sk-sp-58b5ab2331b248e5aea843130b0bd94d"
+        "apiKey": "sk-sp-YOUR_API_KEY_HERE"
       },
       "models": {
         "qwen3.5-plus": {
@@ -72,11 +72,47 @@
           }
         }
       }
+    },
+    "gmn": {
+      "npm": "@ai-sdk/openai",
+      "name": "GMN",
+      "options": {
+        "baseURL": "https://gmn.chuangzuoli.com/v1",
+        "apiKey": "sk-YOUR_API_KEY_HERE"
+      },
+      "models": {
+        "gpt-5.3-codex": {
+          "name": "GPT-5.3 Codex",
+          "thinking": true,
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 400000,
+            "output": 128000
+          },
+          "options": {
+            "store": false,
+            "reasoningEffort": "xhigh",
+            "textVerbosity": "high",
+            "reasoningSummary": "auto",
+            "include": ["reasoning.encrypted_content"]
+          }
+        },
+        "gpt-5.2-codex": {
+          "name": "GPT-5.2 Codex",
+          "options": {
+            "include": ["reasoning.encrypted_content"],
+            "store": false
+          }
+        }
+      }
     }
   },
   "plugin": [
     "oh-my-opencode@latest",
-    "@tarquinen/opencode-dcp@latest",
-    "opencode-mem@latest"
+    "opencode-mem@latest",
+    "@tarquinen/opencode-dcp@latest"
   ]
 }
