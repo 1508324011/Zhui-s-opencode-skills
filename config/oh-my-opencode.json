@@ -2,12 +2,18 @@
 // 此文件不含敏感信息，可以直接提交到版本控制
 // 
 // 模型说明：
-// - bailian-coding-plan-test/qwen3.5-plus: 百炼平台 Qwen3.5 Plus（主力模型）
-// - kimi-for-coding/k2p5: Kimi Coding Plan K2.5（推理/分析）
+// - gmn/gpt-5.3-codex: GPT-5.3 Codex (400K context, xhigh reasoning) - 最强推理/架构
+// - gmn/gpt-5.2-codex: GPT-5.2 Codex - 标准推理
+// - bailian-coding-plan/qwen3.5-plus: Qwen3.5 Plus（主力平衡）
+// - bailian-coding-plan/kimi-k2.5: Kimi K2.5（推理/分析/写作）
+// - bailian-coding-plan/glm-5: GLM-5（复杂推理）
+// - bailian-coding-plan/MiniMax-M2.5: MiniMax M2.5（轻量快速）
 //
-// 使用前确保：
-// 1. 已在 opencode.json 中配置百炼平台 API Key
-// 2. 已通过 /connect 命令配置 Kimi For Coding API
+// 分配策略：
+// - 深度推理/架构设计 → GPT-5.3 Codex (400K context + xhigh reasoning)
+// - 代码审查/质量检查 → GPT-5.3 Codex (大上下文理解)
+// - 日常任务 → Qwen3.5 Plus (平衡性能/成本)
+// - 快速任务 → MiniMax-M2.5 (经济高效)
 
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
@@ -16,13 +22,13 @@
       "model": "bailian-coding-plan/qwen3.5-plus"
     },
     "hephaestus": {
-      "model": "bailian-coding-plan/qwen3.5-plus"
+      "model": "gmn/gpt-5.3-codex"
     },
     "oracle": {
-      "model": "bailian-coding-plan/kimi-k2.5"
+      "model": "gmn/gpt-5.3-codex"
     },
     "librarian": {
-      "model": "bailian-coding-plan/qwen3.5-plus"
+      "model": "bailian-coding-plan/MiniMax-M2.5"
     },
     "explore": {
       "model": "bailian-coding-plan/MiniMax-M2.5"
@@ -31,13 +37,13 @@
       "model": "bailian-coding-plan/qwen3.5-plus"
     },
     "prometheus": {
-      "model": "bailian-coding-plan/qwen3.5-plus"
+      "model": "bailian-coding-plan/kimi-k2.5"
     },
     "metis": {
-      "model": "bailian-coding-plan/glm-5"
+      "model": "gmn/gpt-5.3-codex"
     },
     "momus": {
-      "model": "bailian-coding-plan/qwen3.5-plus"
+      "model": "gmn/gpt-5.3-codex"
     },
     "atlas": {
       "model": "bailian-coding-plan/qwen3.5-plus"
@@ -48,13 +54,13 @@
       "model": "bailian-coding-plan/kimi-k2.5"
     },
     "ultrabrain": {
-      "model": "bailian-coding-plan/glm-5"
+      "model": "gmn/gpt-5.3-codex"
     },
     "deep": {
-      "model": "bailian-coding-plan/glm-5"
+      "model": "gmn/gpt-5.3-codex"
     },
     "artistry": {
-      "model": "bailian-coding-plan/qwen3.5-plus"
+      "model": "gmn/gpt-5.2-codex"
     },
     "quick": {
       "model": "bailian-coding-plan/MiniMax-M2.5"
