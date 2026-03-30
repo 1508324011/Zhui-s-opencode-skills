@@ -143,6 +143,15 @@ check_staged_files() {
         if [ ! -f "$file" ]; then
             continue
         fi
+
+        case "$file" in
+            opencode.json|*/opencode.json|auth.json|*/auth.json|opencode-mem.jsonc|*/opencode-mem.jsonc)
+                log_error "检测到禁止提交的敏感配置文件：$file"
+                has_secrets=1
+                found_files+=("$file")
+                continue
+                ;;
+        esac
         
         # 检查文件名
         if [[ "$file" =~ \.env ]] || [[ "$file" =~ \.local ]] || [[ "$file" =~ secret ]] || [[ "$file" =~ credential ]]; then
