@@ -10,6 +10,7 @@ OpenCode 配置和 Skills 集合 - 用于快速迁移和设置新设备
 - [快速开始](#-快速开始)
 - [配置说明](#-配置说明)
 - [模型分配](#-模型分配)
+- [OMO + Trellis 协同工作流](#-omo--trellis-协同工作流)
 - [Skills](#skills)
 - [Superpowers](#superpowers)
 - [已安装插件](#-已安装插件)
@@ -43,32 +44,26 @@ opencode
 - `@tarquinen/opencode-dcp@latest` - 动态上下文修剪
 - `opencode-mem@latest` - 持久记忆系统
 
-```bash
-# 1. 克隆此仓库
-git clone https://github.com/1508324011/Zhui-s-opencode-skills.git
-cd Zhui-s-opencode-skills
-
-# 2. 运行安装脚本
-./install.sh
-
-# 3. 复制配置文件并填入 API Key
-cp config/opencode.json.example ~/.config/opencode/opencode.json
-nano ~/.config/opencode/opencode.json  # 替换 YOUR_API_KEY_HERE
-
-# 4. 重启 OpenCode
-```
-
 ### 手动配置
 
 ```bash
 # 1. 复制配置文件
 cp config/opencode.json.example ~/.config/opencode/opencode.json
 cp config/oh-my-opencode.json ~/.config/opencode/oh-my-opencode.json
+cp config/oh-my-openagent.jsonc.example ~/.config/opencode/oh-my-openagent.jsonc
+cp opencode-mem.jsonc.example ~/.config/opencode/opencode-mem.jsonc
 
 # 2. 编辑 opencode.json 填入你的 API Key
 nano ~/.config/opencode/opencode.json
 
-# 3. 重启 OpenCode
+# 3. 如果使用 Trellis，编辑 categories.trellis-*
+nano ~/.config/opencode/oh-my-openagent.jsonc
+
+# 4. 如果使用 Memory，填写本地 memoryApiKey
+nano ~/.config/opencode/opencode-mem.jsonc
+
+# 5. 重启 OpenCode
+opencode
 ```
 
 ---
@@ -140,6 +135,62 @@ nano ~/.config/opencode/opencode.json
 | `unspecified-low` | MiniMax-M2.5 | 低优先级任务 |
 | `unspecified-high` | Qwen3.5 Plus | 高优先级任务 |
 | `writing` | Kimi K2.5 | 写作任务 |
+
+---
+
+## 🌉 OMO + Trellis 协同工作流
+
+### 直接从 OMO 输入 vs 从 Trellis 输入
+
+| 入口 | 更适合的场景 | 优势 | 代价 |
+|------|--------------|------|------|
+| **直接和 OMO 对话** | 快速任务、探索式排障、需求还没想清楚时 | 启动快、交互自然、适合边想边做 | 过程结构化程度较低 |
+| **`/trellis:start` / `/trellis:brainstorm`** | 多模块任务、长链路实现、需要 PRD / research / check 分阶段沉淀 | 流程稳定、便于复现、适合长期项目和复杂交付 | 前置准备更多，启动成本更高 |
+
+### 推荐用法
+
+1. **先用 OMO 定义问题**：当需求模糊、需要探索代码或先做小范围验证时，直接在 OpenCode 中对 OMO 下达目标，或者使用 `ultrawork` / `ulw`。
+2. **再用 Trellis 稳定执行**：当任务已经清晰、涉及多个模块或希望走 research → implement → check → finish 流程时，切换到 `/trellis:start` 或 `/trellis:brainstorm`。
+3. **遇到难点再回 OMO**：如果 Trellis 流程中的某个子问题特别棘手，可以把局部问题交回 OMO 深挖，再把结论写回 Trellis 任务目录继续推进。
+
+### Trellis 模型同步：把 `categories.trellis-*` 当成唯一来源
+
+如果你想让 Trellis 子代理自动继承这套模型分配，使用仓库里的模板：
+
+```bash
+# 1. 复制 Trellis 模型同步模板
+cp config/oh-my-openagent.jsonc.example ~/.config/opencode/oh-my-openagent.jsonc
+
+# 2. 编辑五个 Trellis 类别
+nano ~/.config/opencode/oh-my-openagent.jsonc
+```
+
+默认模板包含以下五个分类：
+
+- `trellis-research`
+- `trellis-implement`
+- `trellis-check`
+- `trellis-debug`
+- `trellis-finish`
+
+推荐把它们视为 **Trellis 的唯一模型源**。也就是说，平时只改 `~/.config/opencode/oh-my-openagent.jsonc` 里的这五项，然后让 Trellis 运行时自动同步，而不是手工去改活动中的 `.opencode/agents/*.md`。
+
+### 如何执行同步
+
+如果你的 Trellis 命令集已经包含 `/trellis:sync-models`，优先直接运行：
+
+```text
+/trellis:sync-models
+```
+
+如果还没有这个命令，就直接运行 Trellis 仓库里的同步脚本：
+
+```bash
+python3 /path/to/Trellis/.trellis/scripts/sync_trellis_models_from_omo.py --dry-run
+python3 /path/to/Trellis/.trellis/scripts/sync_trellis_models_from_omo.py
+```
+
+同步完成后，再用一次 `--dry-run` 做回归检查，确认活动运行时已经和 `categories.trellis-*` 一致。
 
 ---
 
@@ -289,13 +340,16 @@ cd Zhui-s-opencode-skills
 # 然后手动填入 API Keys
 cp config/opencode.json.example ~/.config/opencode/opencode.json
 nano ~/.config/opencode/opencode.json
+
+# 如需 Trellis，同步 Trellis 模型模板
+cp config/oh-my-openagent.jsonc.example ~/.config/opencode/oh-my-openagent.jsonc
 ```
 
 ### 方法 2: 手动同步
 
 ```bash
 # 旧设备导出（不含敏感文件）
-rsync -av --exclude='auth.json' --exclude='opencode.json' \
+rsync -av --exclude='auth.json' --exclude='opencode.json' --exclude='opencode-mem.jsonc' \
   ~/.config/opencode/ /path/to/backup/
 
 # 新设备导入
@@ -312,6 +366,8 @@ rsync -av /path/to/backup/ ~/.config/opencode/
 ~/.config/opencode/
 ├── opencode.json              # 提供商配置（含 API Key，不要提交）
 ├── oh-my-opencode.json        # Oh My OpenCode 配置（可提交）
+├── oh-my-openagent.jsonc      # Trellis 模型同步源（可提交）
+├── opencode-mem.jsonc         # Memory 本地配置（可能含 API Key，不要提交）
 ├── auth.json                  # 认证信息（不要提交）
 ├── .gitignore                 # Git 忽略规则
 ├── plugins/
@@ -335,6 +391,7 @@ rsync -av /path/to/backup/ ~/.config/opencode/
 | 文件 | 原因 |
 |------|------|
 | `opencode.json` | 包含 API Key |
+| `opencode-mem.jsonc` | 可能包含 Memory API Key |
 | `auth.json` | 包含认证信息 |
 | `*.env` | 包含环境变量/密钥 |
 | `*.local` | 本地配置文件 |
@@ -345,6 +402,8 @@ rsync -av /path/to/backup/ ~/.config/opencode/
 |------|------|
 | `config/opencode.json.example` | 配置示例（不含真实 Key） |
 | `config/oh-my-opencode.json` | 模型分配配置 |
+| `config/oh-my-openagent.jsonc.example` | Trellis 模型同步模板 |
+| `opencode-mem.jsonc.example` | Memory 配置模板 |
 | `README.md` | 配置说明文档 |
 | `SKILLS.md` | Skills 目录 |
 | `install.sh` | 安装脚本 |
@@ -399,7 +458,10 @@ opencode auth login
 ```bash
 # 验证 JSON 语法
 jq . ~/.config/opencode/opencode.json
-jq . ~/.config/opencode/oh-my-opencode.json
+
+# 快速检查 JSONC 关键项
+grep -n 'model' ~/.config/opencode/oh-my-opencode.json
+grep -n 'trellis-' ~/.config/opencode/oh-my-openagent.jsonc
 
 # 重启 OpenCode
 ```
