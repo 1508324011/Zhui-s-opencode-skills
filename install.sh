@@ -49,7 +49,13 @@ echo ""
 log_info "创建配置目录..."
 mkdir -p "$TARGET_DIR/skills"
 mkdir -p "$TARGET_DIR/plugins"
-mkdir -p "$TARGET_DIR/superpowers"
+
+for legacy_path in "$TARGET_DIR/plugins/superpowers.js" "$TARGET_DIR/skills/superpowers" "$TARGET_DIR/superpowers"; do
+    if [ -e "$legacy_path" ] || [ -L "$legacy_path" ]; then
+        rm -rf "$legacy_path"
+        log_success "已清理旧的 Superpowers 残留：$legacy_path"
+    fi
+done
 
 # =============================================================================
 # 0. 安装核心 npm 插件
@@ -69,13 +75,6 @@ echo ""
 
 # =============================================================================
 # 1. 安装 Skills
-log_info "创建配置目录..."
-mkdir -p "$TARGET_DIR/skills"
-mkdir -p "$TARGET_DIR/plugins"
-mkdir -p "$TARGET_DIR/superpowers"
-
-# =============================================================================
-# 1. 安装 Skills
 # =============================================================================
 log_info "安装 Skills (146 个科学和技术技能)..."
 
@@ -92,37 +91,7 @@ fi
 echo ""
 
 # =============================================================================
-# 2. 安装 Superpowers 插件
-# =============================================================================
-log_info "安装 Superpowers 插件..."
-
-if [ -f "$SCRIPT_DIR/plugins/superpowers.js" ]; then
-    cp "$SCRIPT_DIR/plugins/superpowers.js" "$TARGET_DIR/plugins/"
-    log_success "已安装 superpowers.js"
-elif [ -d "$SCRIPT_DIR/superpowers" ]; then
-    # 如果没有 plugins/superpowers.js，尝试安装 superpowers 仓库
-    log_info "克隆 Superpowers 仓库..."
-    
-    if [ ! -d "$TARGET_DIR/superpowers/.git" ]; then
-        git clone https://github.com/obra/superpowers.git "$TARGET_DIR/superpowers" 2>/dev/null || {
-            log_warning "无法克隆 superpowers，跳过..."
-        }
-    fi
-    
-    if [ -d "$TARGET_DIR/superpowers/.git" ]; then
-        # 创建 symlinks
-        ln -sf "$TARGET_DIR/superpowers/.opencode/plugins/superpowers.js" "$TARGET_DIR/plugins/superpowers.js" 2>/dev/null || true
-        ln -sf "$TARGET_DIR/superpowers/skills" "$TARGET_DIR/skills/superpowers" 2>/dev/null || true
-        log_success "已安装 Superpowers 插件和技能"
-    fi
-else
-    log_warning "未找到 Superpowers，跳过..."
-fi
-
-echo ""
-
-# =============================================================================
-# 3. 安装配置文件
+# 2. 安装配置文件
 # =============================================================================
 log_info "安装配置文件..."
 
@@ -152,7 +121,7 @@ fi
 echo ""
 
 # =============================================================================
-# 4. 创建 .gitignore
+# 3. 创建 .gitignore
 # =============================================================================
 log_info "创建 .gitignore..."
 
@@ -206,17 +175,23 @@ log_success "已创建 .gitignore"
 echo ""
 
 # =============================================================================
-# 5. 验证安装
+# 4. 验证安装
 # =============================================================================
 log_info "验证安装..."
 
 SKILL_COUNT=$(ls -1 "$TARGET_DIR/skills/" | wc -l)
 log_success "Skills 数量：$SKILL_COUNT"
 
-if [ -f "$TARGET_DIR/plugins/superpowers.js" ] || [ -L "$TARGET_DIR/plugins/superpowers.js" ]; then
-    log_success "Superpowers 插件：已安装"
+if [ -f "$TARGET_DIR/dcp.jsonc" ]; then
+    log_success "DCP 配置：已安装"
 else
-    log_warning "Superpowers 插件：未找到"
+    log_warning "DCP 配置：未找到"
+fi
+
+if [ -f "$TARGET_DIR/oh-my-openagent.jsonc" ]; then
+    log_success "Trellis 模型模板：已安装"
+else
+    log_warning "Trellis 模型模板：未找到"
 fi
 
 if [ -f "$TARGET_DIR/oh-my-opencode.json" ]; then
@@ -226,7 +201,7 @@ fi
 echo ""
 
 # =============================================================================
-# 6. 后续步骤
+# 5. 后续步骤
 # =============================================================================
 echo "=========================================="
 log_success "安装完成！"
@@ -245,10 +220,12 @@ echo "3. 如果你使用 Trellis："
 echo "   nano $TARGET_DIR/oh-my-openagent.jsonc"
 echo "   # 编辑 categories.trellis-*，然后在 Trellis 环境中运行 /trellis:sync-models"
 echo ""
-echo "4. 重启 OpenCode:"
+echo "4. 如果旧设备曾经启用过 Superpowers，请确认 opencode.json 中已移除 ./superpowers"
+echo ""
+echo "5. 重启 OpenCode:"
 echo "   opencode"
 echo ""
-echo "5. 验证安装:"
+echo "6. 验证安装:"
 echo "   在 OpenCode 中输入 /models 和 /dcp stats 查看配置是否生效"
 echo ""
 echo "=========================================="
