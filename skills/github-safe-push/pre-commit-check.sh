@@ -64,8 +64,8 @@ check_git_status() {
         
         if [ -n "$remote_commit" ] && [ "$local_commit" != "$remote_commit" ]; then
             # 检查是否是ahead/behind状态
-            local ahead=$(git rev-list --count HEAD..@{u} 2>/dev/null || echo "0")
-            local behind=$(git rev-list --count @{u}..HEAD 2>/dev/null || echo "0")
+            local behind=$(git rev-list --count HEAD..@{u} 2>/dev/null || echo "0")
+            local ahead=$(git rev-list --count @{u}..HEAD 2>/dev/null || echo "0")
             
             if [ "$behind" -gt 0 ]; then
                 log_error "本地分支落后于远程 $behind 个提交"
