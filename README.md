@@ -12,7 +12,6 @@ OpenCode 配置和 Skills 集合 - 用于快速迁移和设置新设备
 - [模型分配](#-模型分配)
 - [OMO + Trellis 协同工作流](#-omo--trellis-协同工作流)
 - [Skills](#skills)
-- [Superpowers](#superpowers)
 - [已安装插件](#-已安装插件)
 - [设备迁移](#-设备迁移)
 - [安全提交规范](#-安全提交规范)
@@ -43,7 +42,7 @@ opencode
 - `oh-my-opencode@latest` - 多 Agent 编排框架
 - `@tarquinen/opencode-dcp@latest` - 动态上下文修剪
 
-> `opencode-mem` 已从这个仓库的默认迁移方案里移除，不再自动安装，也不再提供模板配置。当前默认只保留 OMO + DCP，两者负责主工作流与上下文管理。
+> `opencode-mem` 和 `Superpowers` 都已从这个仓库的默认迁移方案里移除。当前默认组合是 **OMO + DCP**，结构化多阶段工作流统一走 **Trellis**。
 
 ### 手动配置
 
@@ -154,6 +153,12 @@ opencode
 2. **再用 Trellis 稳定执行**：当任务已经清晰、涉及多个模块或希望走 research → implement → check → finish 流程时，切换到 `/trellis:start` 或 `/trellis:brainstorm`。
 3. **遇到难点再回 OMO**：如果 Trellis 流程中的某个子问题特别棘手，可以把局部问题交回 OMO 深挖，再把结论写回 Trellis 任务目录继续推进。
 
+### 当前仓库的工作流取舍
+
+- `Superpowers` 已不再作为这个仓库的默认插件或默认技能来源
+- 需要结构化、多阶段执行时，统一改走 Trellis 工作流
+- 因此这里保留的是：**OMO 负责主代理能力，DCP 负责上下文管理，Trellis 负责复杂任务编排**
+
 ### Trellis 模型同步：把 `categories.trellis-*` 当成唯一来源
 
 如果你想让 Trellis 子代理自动继承这套模型分配，使用仓库里的模板：
@@ -236,33 +241,6 @@ python3 /path/to/Trellis/.trellis/scripts/sync_trellis_models_from_omo.py
 
 ---
 
-## 🦸 Superpowers
-
-Superpowers 插件提供额外的开发增强功能。
-
-### 核心技能
-
-| 技能 | 用途 |
-|------|------|
-| `brainstorming` | 创意/功能设计 |
-| `writing-plans` | 编写实现计划 |
-| `test-driven-development` | TDD 开发 |
-| `systematic-debugging` | 系统调试 |
-| `verification-before-completion` | 完成前验证 |
-| `requesting-code-review` | 请求代码审查 |
-| `receiving-code-review` | 接收代码审查 |
-| `using-git-worktrees` | Git 工作树管理 |
-| `finishing-a-development-branch` | 开发分支完成 |
-
-### 使用方式
-
-- **自动加载** - 每次会话自动激活
-- **创造性工作前** - 使用 brainstorming
-- **复杂任务前** - 使用 writing-plans
-- **完成前** - 使用 verification-before-completion
-
----
-
 ## 💾 已安装插件
 
 此配置使用以下 OpenCode 插件：
@@ -314,6 +292,10 @@ Superpowers 插件提供额外的开发增强功能。
 - `opencode-mem` 已从仓库默认安装流程中移除
 - 仓库不再提供 `opencode-mem.jsonc.example`
 - 如果旧设备里还残留 `opencode-mem.jsonc`，请保留在 `.gitignore` 中，但不要再把它当成新设备的默认必装项
+- `Superpowers` 已从仓库默认安装流程中移除
+- 仓库不再分发 `plugins/superpowers.js`，也不再把 `./superpowers` 作为默认插件入口
+- 原先依赖 Superpowers 的结构化开发流程，现改由 Trellis 负责
+- 如果旧设备里还保留 `plugins/superpowers.js`、`skills/superpowers` 或 `opencode.json` 中的 `./superpowers`，请手动清理；重新运行 `install.sh` 时也会尝试删除这些遗留项
 
 ---
 
@@ -348,7 +330,7 @@ rsync -av --exclude='auth.json' --exclude='opencode.json' --exclude='opencode-me
 # 新设备导入
 rsync -av /path/to/backup/ ~/.config/opencode/
 
-# 手动配置 API Keys，并根据需要清理旧的 opencode-mem.jsonc
+# 手动配置 API Keys，并根据需要清理旧的 opencode-mem.jsonc、plugins/superpowers.js，以及 opencode.json 中残留的 ./superpowers 插件入口
 ```
 
 ---
@@ -363,12 +345,10 @@ rsync -av /path/to/backup/ ~/.config/opencode/
 ├── oh-my-openagent.jsonc      # Trellis 模型同步源（可提交）
 ├── auth.json                  # 认证信息（不要提交）
 ├── .gitignore                 # Git 忽略规则
-├── plugins/
-│   └── superpowers.js         # Superpowers 插件
+├── plugins/                   # OpenCode 插件目录
 └── skills/
     ├── scanpy/
     ├── scvi-tools/
-    ├── superpowers/           # Superpowers 技能
     ├── github-safe-push/      # Git 安全提交技能
     └── ... (146 个技能)
 ```
@@ -424,17 +404,15 @@ git push origin main
 
 ## 🛠️ 故障排除
 
-### 插件未加载
+### Trellis / DCP 未生效
 
 ```bash
-# 检查插件文件
-ls -la ~/.config/opencode/plugins/
-
-# 确认文件名为 superpowers.js（带 s）
-# 如果是 superpower.js，重命名：
-mv ~/.config/opencode/plugins/superpower.js \
-   ~/.config/opencode/plugins/superpowers.js
+# 检查关键配置文件是否存在
+ls ~/.config/opencode/dcp.jsonc
+ls ~/.config/opencode/oh-my-openagent.jsonc
 ```
+
+进入 OpenCode 后，先执行 `/dcp stats`；如果你使用 Trellis，再执行 `/trellis:sync-models` 或对应的 Trellis 同步脚本。
 
 ### 模型不可用
 
@@ -479,7 +457,7 @@ MIT License
 
 - **[Oh My OpenCode](https://github.com/code-yeongyu/oh-my-opencode)** — 多 Agent 编排框架，提供 Sisyphus、Hephaestus、Prometheus 等纪律 Agent 和 `ultrawork` 自动化系统
 - **[OpenCode](https://github.com/anomalyco/opencode)** — AI 辅助科研计算平台，提供基础 Agent 架构和插件系统
-- **[Superpowers](https://github.com/obra/superpowers)** — Superpowers 插件框架，提供 brainstorming、writing-plans、test-driven-development 等核心开发技能
+- **[Trellis](https://github.com/1508324011/Trellis)** — 结构化任务编排工作流，负责复杂任务的 research / implement / check / finish 流程
 
 ### 核心插件
 
