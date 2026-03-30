@@ -8,6 +8,7 @@
 # API Keys & Credentials - 绝对不要提交
 # =====================
 opencode.json
+opencode-mem.jsonc
 auth.json
 *.env
 *.env.*

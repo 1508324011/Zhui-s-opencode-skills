@@ -115,7 +115,7 @@ skills/github-safe-push/
 ```jsonc
 {
   // ❌ 错误：直接写 API Key
-  // "memoryApiKey": "sk-sp-58b5ab2331b248e5aea843130b0bd94d"
+  // "memoryApiKey": "sk-sp-YOUR_MEMORY_API_KEY_HERE"
   
   // ✅ 正确：使用环境变量
   "memoryApiKey": "${MEMORY_API_KEY}"
