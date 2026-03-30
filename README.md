@@ -42,7 +42,8 @@ opencode
 **install.sh 自动安装以下 npm 插件**:
 - `oh-my-opencode@latest` - 多 Agent 编排框架
 - `@tarquinen/opencode-dcp@latest` - 动态上下文修剪
-- `opencode-mem@latest` - 持久记忆系统
+
+> `opencode-mem` 已从这个仓库的默认迁移方案里移除，不再自动安装，也不再提供模板配置。当前默认只保留 OMO + DCP，两者负责主工作流与上下文管理。
 
 ### 手动配置
 
@@ -51,16 +52,16 @@ opencode
 cp config/opencode.json.example ~/.config/opencode/opencode.json
 cp config/oh-my-opencode.json ~/.config/opencode/oh-my-opencode.json
 cp config/oh-my-openagent.jsonc.example ~/.config/opencode/oh-my-openagent.jsonc
-cp opencode-mem.jsonc.example ~/.config/opencode/opencode-mem.jsonc
+cp dcp.jsonc ~/.config/opencode/dcp.jsonc
 
 # 2. 编辑 opencode.json 填入你的 API Key
 nano ~/.config/opencode/opencode.json
 
-# 3. 如果使用 Trellis，编辑 categories.trellis-*
-nano ~/.config/opencode/oh-my-openagent.jsonc
+# 3. 如需调整 DCP 行为，编辑 dcp.jsonc
+nano ~/.config/opencode/dcp.jsonc
 
-# 4. 如果使用 Memory，填写本地 memoryApiKey
-nano ~/.config/opencode/opencode-mem.jsonc
+# 4. 如果使用 Trellis，编辑 categories.trellis-*
+nano ~/.config/opencode/oh-my-openagent.jsonc
 
 # 5. 重启 OpenCode
 opencode
@@ -302,28 +303,17 @@ Superpowers 插件提供额外的开发增强功能。
 - 更快的响应速度
 - 更专注的 Agent 注意力
 
-### OpenCode Memory
+**当前仓库默认配置**:
+- 默认安装 `@tarquinen/opencode-dcp@latest`
+- 默认提供根目录 `dcp.jsonc`，可直接复制到 `~/.config/opencode/dcp.jsonc`
+- 配置已切换到最新 schema，主要围绕 `compress`、`commands`、`manualMode`、`strategies` 四个配置块
+- 常用命令是 `/dcp context`、`/dcp stats`、`/dcp manual on|off`
 
-**仓库**: https://github.com/tickernelz/opencode-mem
+### 已移除的默认插件
 
-**核心功能**:
-- **本地向量数据库** — SQLite + HNSW (hnswlib-wasm) 快速相似性搜索
-- **持久项目记忆** — 跨会话长期上下文保留（项目级和用户级）
-- **自动用户画像学习** — 基于编码模式和决策构建用户偏好档案
-- **统一记忆 - 提示时间线** — 按时间顺序浏览记忆条目的可视化界面
-- **完整的 Web UI** — 访问 `http://127.0.0.1:4747` 进行可视化记忆浏览和管理
-- **智能提示提取** — 使用可配置 LLM 模型自动从对话中提取和存储相关记忆
-- **12+ 本地嵌入模型** — 支持 Xenova/nomic-embed-text-v1 等嵌入模型
-- **智能去重** — 防止重复记忆条目 clutter 数据库
-- **多 Provider AI 支持** — 兼容 OpenAI、Anthropic 等 LLM Provider
-- **内置隐私保护** — 本地存储确保敏感项目数据不离开本地
-- **可配置自动捕获** — 自动记忆捕获，带语言检测、间隔设置和通知
-
-**效果**:
-- 跨会话保留架构决策
-- 记住编码偏好和项目约定
-- 避免每次会话从零开始
-- 建立长期项目知识
+- `opencode-mem` 已从仓库默认安装流程中移除
+- 仓库不再提供 `opencode-mem.jsonc.example`
+- 如果旧设备里还残留 `opencode-mem.jsonc`，请保留在 `.gitignore` 中，但不要再把它当成新设备的默认必装项
 
 ---
 
@@ -341,6 +331,9 @@ cd Zhui-s-opencode-skills
 cp config/opencode.json.example ~/.config/opencode/opencode.json
 nano ~/.config/opencode/opencode.json
 
+# 如需调整 DCP，复制当前模板
+cp dcp.jsonc ~/.config/opencode/dcp.jsonc
+
 # 如需 Trellis，同步 Trellis 模型模板
 cp config/oh-my-openagent.jsonc.example ~/.config/opencode/oh-my-openagent.jsonc
 ```
@@ -355,7 +348,7 @@ rsync -av --exclude='auth.json' --exclude='opencode.json' --exclude='opencode-me
 # 新设备导入
 rsync -av /path/to/backup/ ~/.config/opencode/
 
-# 手动配置 API Keys
+# 手动配置 API Keys，并根据需要清理旧的 opencode-mem.jsonc
 ```
 
 ---
@@ -366,8 +359,8 @@ rsync -av /path/to/backup/ ~/.config/opencode/
 ~/.config/opencode/
 ├── opencode.json              # 提供商配置（含 API Key，不要提交）
 ├── oh-my-opencode.json        # Oh My OpenCode 配置（可提交）
+├── dcp.jsonc                  # DCP 插件配置（可提交）
 ├── oh-my-openagent.jsonc      # Trellis 模型同步源（可提交）
-├── opencode-mem.jsonc         # Memory 本地配置（可能含 API Key，不要提交）
 ├── auth.json                  # 认证信息（不要提交）
 ├── .gitignore                 # Git 忽略规则
 ├── plugins/
@@ -391,7 +384,7 @@ rsync -av /path/to/backup/ ~/.config/opencode/
 | 文件 | 原因 |
 |------|------|
 | `opencode.json` | 包含 API Key |
-| `opencode-mem.jsonc` | 可能包含 Memory API Key |
+| `opencode-mem.jsonc` | 历史遗留 Memory 配置，若仍存在可能含敏感信息 |
 | `auth.json` | 包含认证信息 |
 | `*.env` | 包含环境变量/密钥 |
 | `*.local` | 本地配置文件 |
@@ -403,7 +396,7 @@ rsync -av /path/to/backup/ ~/.config/opencode/
 | `config/opencode.json.example` | 配置示例（不含真实 Key） |
 | `config/oh-my-opencode.json` | 模型分配配置 |
 | `config/oh-my-openagent.jsonc.example` | Trellis 模型同步模板 |
-| `opencode-mem.jsonc.example` | Memory 配置模板 |
+| `dcp.jsonc` | DCP 插件配置模板 |
 | `README.md` | 配置说明文档 |
 | `SKILLS.md` | Skills 目录 |
 | `install.sh` | 安装脚本 |
@@ -459,12 +452,18 @@ opencode auth login
 # 验证 JSON 语法
 jq . ~/.config/opencode/opencode.json
 
+# 确认 DCP 配置位置
+ls ~/.config/opencode/dcp.jsonc
+
 # 快速检查 JSONC 关键项
 grep -n 'model' ~/.config/opencode/oh-my-opencode.json
 grep -n 'trellis-' ~/.config/opencode/oh-my-openagent.jsonc
 
 # 重启 OpenCode
+opencode
 ```
+
+进入 OpenCode 后，再执行 `/dcp context` 或 `/dcp stats` 检查 DCP 是否正常加载。
 
 ---
 
@@ -485,7 +484,6 @@ MIT License
 ### 核心插件
 
 - **[opencode-dynamic-context-pruning](https://github.com/Opencode-DCP/opencode-dynamic-context-pruning)** — 智能上下文管理插件，通过 distill/compress/prune 工具和自动去重减少 30-50% token 消耗
-- **[opencode-mem](https://github.com/tickernelz/opencode-mem)** — 持久记忆系统，使用本地向量数据库（SQLite + HNSW）实现跨会话长期上下文保留
 
 ### 技能集合
 

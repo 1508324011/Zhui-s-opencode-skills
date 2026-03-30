@@ -33,18 +33,14 @@
 
 **配置**: `dcp.jsonc` - 定义上下文限制和 pruning 策略
 
-### 3. OpenCode Memory
+### 3. 仓库默认插件说明
 
-**npm 包**: `opencode-mem@latest`  
-**GitHub**: https://github.com/tickernelz/opencode-mem
+此仓库当前默认只保留：
 
-**功能**:
-- 本地向量数据库（SQLite + HNSW）
-- 跨会话持久记忆
-- 自动用户画像学习
-- Web UI (http://127.0.0.1:4747)
+- `oh-my-opencode@latest`
+- `@tarquinen/opencode-dcp@latest`
 
-**配置模板**: `opencode-mem.jsonc.example` - 复制到本地后填写记忆系统参数和 API Key
+`opencode-mem` 已从默认迁移方案中移除，不再自动安装，也不再提供配置模板。
 
 ## 🔧 安装方法
 
@@ -54,7 +50,7 @@
 ./install.sh
 ```
 
-自动安装所有三个插件。
+自动安装 OMO 与 DCP 两个核心插件。
 
 ### 方法 2: 手动安装
 
@@ -62,13 +58,11 @@
 # 全局安装
 npm install -g oh-my-opencode
 npm install -g @tarquinen/opencode-dcp
-npm install -g opencode-mem
 
 # 或本地安装到 OpenCode 配置目录
 cd ~/.config/opencode
 npm install oh-my-opencode
 npm install @tarquinen/opencode-dcp
-npm install opencode-mem
 ```
 
 ## 📋 配置步骤
@@ -77,7 +71,7 @@ npm install opencode-mem
    ```bash
    nano ~/.config/opencode/opencode.json
    ```
-   填入 API Key 并确保 plugin 数组包含三个插件
+   填入 API Key，并确保 plugin 数组至少包含 `oh-my-opencode@latest` 与 `@tarquinen/opencode-dcp@latest`
 
 2. **编辑 oh-my-opencode.json**
     ```bash
@@ -92,25 +86,19 @@ npm install opencode-mem
    ```
    把 `categories.trellis-research`、`trellis-implement`、`trellis-check`、`trellis-debug`、`trellis-finish` 作为 Trellis 的唯一模型源。
 
-4. **编辑 dcp.jsonc**（可选）
+4. **复制并编辑 dcp.jsonc**
     ```bash
+    cp dcp.jsonc ~/.config/opencode/dcp.jsonc
     nano ~/.config/opencode/dcp.jsonc
     ```
-    配置上下文限制和 pruning 策略
+    当前仓库提供的是基于 DCP 最新 schema 的配置模板，重点使用 `compress`、`commands`、`manualMode` 和 `strategies` 四组设置。
 
-5. **复制并编辑 opencode-mem.jsonc**
-    ```bash
-    cp opencode-mem.jsonc.example ~/.config/opencode/opencode-mem.jsonc
-    nano ~/.config/opencode/opencode-mem.jsonc
-    ```
-    这是本地文件，不要提交到 Git。
-
-6. **重启 OpenCode**
+5. **重启 OpenCode**
     ```bash
     opencode
     ```
 
-7. **如果使用 Trellis，同步活动运行时模型**
+6. **如果使用 Trellis，同步活动运行时模型**
    ```bash
    /trellis:sync-models
    ```
@@ -123,6 +111,7 @@ npm install opencode-mem
 ```
 /models           # 查看可用模型
 /plugins          # 查看已安装插件
+/dcp context      # 查看当前上下文使用情况
 /dcp stats        # 查看 DCP 统计（如果已安装 DCP）
 /trellis:sync-models  # 同步 Trellis 子代理模型（如果已安装 Trellis 命令）
 ```
