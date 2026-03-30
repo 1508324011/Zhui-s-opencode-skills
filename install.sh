@@ -136,10 +136,20 @@ if [ -f "$SCRIPT_DIR/config/oh-my-opencode.json" ]; then
     log_success "已安装 oh-my-opencode.json"
 fi
 
+if [ -f "$SCRIPT_DIR/config/oh-my-openagent.jsonc.example" ] && [ ! -f "$TARGET_DIR/oh-my-openagent.jsonc" ]; then
+    cp "$SCRIPT_DIR/config/oh-my-openagent.jsonc.example" "$TARGET_DIR/oh-my-openagent.jsonc"
+    log_success "已创建 oh-my-openagent.jsonc (Trellis 模型同步模板)"
+fi
+
 # opencode.json (仅当不存在时创建)
 if [ -f "$SCRIPT_DIR/config/opencode.json.example" ] && [ ! -f "$TARGET_DIR/opencode.json" ]; then
     cp "$SCRIPT_DIR/config/opencode.json.example" "$TARGET_DIR/opencode.json"
     log_success "已创建 opencode.json (请填入 API Key)"
+fi
+
+if [ -f "$SCRIPT_DIR/opencode-mem.jsonc.example" ] && [ ! -f "$TARGET_DIR/opencode-mem.jsonc" ]; then
+    cp "$SCRIPT_DIR/opencode-mem.jsonc.example" "$TARGET_DIR/opencode-mem.jsonc"
+    log_success "已创建 opencode-mem.jsonc (请本地填入 Memory API Key)"
 fi
 
 # dcp.jsonc (如果存在)
@@ -158,6 +168,7 @@ log_info "创建 .gitignore..."
 cat > "$TARGET_DIR/.gitignore" << 'EOF'
 # API Keys & Credentials
 opencode.json
+opencode-mem.jsonc
 auth.json
 *.env
 *.env.*
@@ -236,10 +247,17 @@ echo "1. 配置 API Key:"
 echo "   nano $TARGET_DIR/opencode.json"
 echo "   (将 YOUR_API_KEY_HERE 替换为你的真实 API Key)"
 echo ""
-echo "2. 重启 OpenCode:"
+echo "2. 配置 OpenCode Memory（可选，但建议本地单独填写）:"
+echo "   nano $TARGET_DIR/opencode-mem.jsonc"
+echo ""
+echo "3. 如果你使用 Trellis："
+echo "   nano $TARGET_DIR/oh-my-openagent.jsonc"
+echo "   # 编辑 categories.trellis-*，然后在 Trellis 环境中运行 /trellis:sync-models"
+echo ""
+echo "4. 重启 OpenCode:"
 echo "   opencode"
 echo ""
-echo "3. 验证安装:"
+echo "5. 验证安装:"
 echo "   在 OpenCode 中输入 /models 查看可用模型"
 echo ""
 echo "=========================================="

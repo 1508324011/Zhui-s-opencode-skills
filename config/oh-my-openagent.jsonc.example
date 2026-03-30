@@ -1,0 +1,24 @@
+// Trellis 模型同步模板
+// 复制到 ~/.config/opencode/oh-my-openagent.jsonc 后，本地修改即可。
+// 这个文件不应包含 API Key，只负责定义 Trellis 各阶段的模型分配。
+// 推荐把 categories.trellis-* 视为 Trellis 的唯一模型源，然后在 Trellis 环境中运行 /trellis:sync-models。
+
+{
+  "categories": {
+    "trellis-research": {
+      "model": "bailian-coding-plan/kimi-k2.5"
+    },
+    "trellis-implement": {
+      "model": "bailian-coding-plan/glm-5"
+    },
+    "trellis-check": {
+      "model": "gmn/gpt-5.3-codex"
+    },
+    "trellis-debug": {
+      "model": "gmn/gpt-5.3-codex"
+    },
+    "trellis-finish": {
+      "model": "gmn/gpt-5.3-codex"
+    }
+  }
+}
