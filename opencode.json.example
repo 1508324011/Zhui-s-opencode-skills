@@ -118,7 +118,6 @@
   },
   "plugin": [
     "oh-my-opencode@latest",
-    "@tarquinen/opencode-dcp@latest",
-    "./superpowers"
+    "@tarquinen/opencode-dcp@latest"
   ]
 }
