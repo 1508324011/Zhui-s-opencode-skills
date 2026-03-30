@@ -112,7 +112,6 @@
   },
   "plugin": [
     "oh-my-opencode@latest",
-    "opencode-mem@latest",
     "@tarquinen/opencode-dcp@latest"
   ]
 }

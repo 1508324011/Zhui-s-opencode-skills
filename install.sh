@@ -64,10 +64,6 @@ npm install -g oh-my-opencode 2>/dev/null || npm install oh-my-opencode 2>/dev/n
 log_info "安装 @tarquinen/opencode-dcp..."
 npm install -g @tarquinen/opencode-dcp 2>/dev/null || npm install @tarquinen/opencode-dcp 2>/dev/null || log_warning "opencode-dcp 安装失败，请手动安装"
 
-# opencode-mem
-log_info "安装 opencode-mem..."
-npm install -g opencode-mem 2>/dev/null || npm install opencode-mem 2>/dev/null || log_warning "opencode-mem 安装失败，请手动安装"
-
 log_success "核心插件安装完成"
 echo ""
 
@@ -145,11 +141,6 @@ fi
 if [ -f "$SCRIPT_DIR/config/opencode.json.example" ] && [ ! -f "$TARGET_DIR/opencode.json" ]; then
     cp "$SCRIPT_DIR/config/opencode.json.example" "$TARGET_DIR/opencode.json"
     log_success "已创建 opencode.json (请填入 API Key)"
-fi
-
-if [ -f "$SCRIPT_DIR/opencode-mem.jsonc.example" ] && [ ! -f "$TARGET_DIR/opencode-mem.jsonc" ]; then
-    cp "$SCRIPT_DIR/opencode-mem.jsonc.example" "$TARGET_DIR/opencode-mem.jsonc"
-    log_success "已创建 opencode-mem.jsonc (请本地填入 Memory API Key)"
 fi
 
 # dcp.jsonc (如果存在)
@@ -247,8 +238,8 @@ echo "1. 配置 API Key:"
 echo "   nano $TARGET_DIR/opencode.json"
 echo "   (将 YOUR_API_KEY_HERE 替换为你的真实 API Key)"
 echo ""
-echo "2. 配置 OpenCode Memory（可选，但建议本地单独填写）:"
-echo "   nano $TARGET_DIR/opencode-mem.jsonc"
+echo "2. 如需调整 DCP 行为："
+echo "   nano $TARGET_DIR/dcp.jsonc"
 echo ""
 echo "3. 如果你使用 Trellis："
 echo "   nano $TARGET_DIR/oh-my-openagent.jsonc"
@@ -258,7 +249,7 @@ echo "4. 重启 OpenCode:"
 echo "   opencode"
 echo ""
 echo "5. 验证安装:"
-echo "   在 OpenCode 中输入 /models 查看可用模型"
+echo "   在 OpenCode 中输入 /models 和 /dcp stats 查看配置是否生效"
 echo ""
 echo "=========================================="
 echo ""
