@@ -1,52 +1,54 @@
 {
   "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json",
-  
-  // ============================================
-  // Dynamic Context Pruning Configuration
-  // ============================================
-  
-  // Enable DCP (set to false to temporarily disable)
   "enabled": true,
-  
-  // Pruning strategy: aggressive | moderate | conservative
-  // - aggressive: Maximize context savings, may lose more detail
-  // - moderate: Balanced approach (recommended)
-  // - conservative: Keep more context, prune only obvious noise
-  "strategy": "aggressive",
-  
-  // Minimum context to preserve (0.0-1.0)
-  // Always keep at least 30% of core context
-  "minContextThreshold": 0.3,
-  
-  // Auto-prune interval (every N turns)
-  "autoPruneInterval": 5,
-  
-  // Patterns to NEVER prune (case-insensitive match)
-  "preservePatterns": [
-    "TODO",
-    "FIXME",
-    "CRITICAL",
-    "WARNING",
-    "error",
-    "failed",
-    "failure",
-    "exception",
-    "bug",
-    "issue"
+  "debug": false,
+  "pruneNotification": "detailed",
+  "pruneNotificationType": "chat",
+  "commands": {
+    "enabled": true,
+    "protectedTools": []
+  },
+  "manualMode": {
+    "enabled": false,
+    "automaticStrategies": true
+  },
+  "turnProtection": {
+    "enabled": false,
+    "turns": 4
+  },
+  "experimental": {
+    "allowSubAgents": false,
+    "customPrompts": false
+  },
+  "protectedFilePatterns": [
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/package.json",
+    "**/requirements.txt",
+    "**/Cargo.toml"
   ],
-  
-  // File patterns to always preserve in context
-  "preserveFilePatterns": [
-    "*.test.*",
-    "*.spec.*",
-    "package.json",
-    "requirements.txt",
-    "Cargo.toml"
-  ],
-  
-  // Maximum context window usage before triggering prune (percentage)
-  "maxContextUsagePercent": 75,
-  
-  // Enable debug logging
-  "debugLogging": false
+  "compress": {
+    "mode": "range",
+    "permission": "allow",
+    "showCompression": false,
+    "summaryBuffer": true,
+    "maxContextLimit": 100000,
+    "minContextLimit": 50000,
+    "nudgeFrequency": 5,
+    "iterationNudgeThreshold": 15,
+    "nudgeForce": "soft",
+    "protectedTools": [],
+    "protectUserMessages": false
+  },
+  "strategies": {
+    "deduplication": {
+      "enabled": true,
+      "protectedTools": []
+    },
+    "purgeErrors": {
+      "enabled": true,
+      "turns": 4,
+      "protectedTools": []
+    }
+  }
 }
