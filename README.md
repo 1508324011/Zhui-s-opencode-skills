@@ -221,6 +221,16 @@ python3 /path/to/Trellis/.trellis/scripts/sync_trellis_models_from_omo.py
 
 完整列表见 [SKILLS.md](./SKILLS.md)
 
+### 新增迁移技能
+
+这次仓库额外收录了 3 个已经过本地适配和验证的技能，运行 `install.sh` 时会随 `skills/` 一起复制到新设备：
+
+| 技能 | 仓库路径 | 用途 | 备注 |
+|------|----------|------|------|
+| `frontend-design` | `skills/frontend-design/` | 引入 Anthropic 的前端设计审美约束，生成更有辨识度的 UI / 页面实现 | 适合作为 OpenCode 原生 skill 直接使用 |
+| `skill-creator` | `skills/skill-creator/` | 把 Anthropic 的技能设计/评审/打包工作流迁移到 OpenCode | 保留上游脚本；其中部分 trigger-eval 脚本仍是 Claude Code 参考实现 |
+| `web-access` | `skills/web-access/` | 提供联网检索、登录态网页访问、浏览器 CDP 交互和站点经验积累能力 | 依赖 Node.js 22+ 与 Chrome remote debugging，见下方迁移说明 |
+
 ### github-safe-push 技能
 
 **重要**：提交代码前必须运行安全检查，防止 API Key 泄露。
@@ -320,6 +330,14 @@ cp dcp.jsonc ~/.config/opencode/dcp.jsonc
 cp config/oh-my-openagent.jsonc.example ~/.config/opencode/oh-my-openagent.jsonc
 ```
 
+`install.sh` 会自动把仓库中的 `skills/frontend-design`、`skills/skill-creator`、`skills/web-access` 一并复制到 `~/.config/opencode/skills/`，不需要额外登记插件。
+
+其中 `web-access` 迁移后还需要额外确认：
+
+1. `web-access` 默认要求新设备使用 **Node.js 22+**；低于 22 时，只有运行环境本身已经能解析 `ws` 模块时才可能工作，`install.sh` 不会自动补这个依赖。
+2. Chrome 中已开启 `chrome://inspect/#remote-debugging` 并勾选 **Allow remote debugging for this browser instance**。
+3. 如需手动检查环境，可在 `~/.config/opencode/skills/web-access/` 下运行 `node "./scripts/check-deps.mjs"`。
+
 ### 方法 2: 手动同步
 
 ```bash
@@ -350,7 +368,7 @@ rsync -av /path/to/backup/ ~/.config/opencode/
     ├── scanpy/
     ├── scvi-tools/
     ├── github-safe-push/      # Git 安全提交技能
-    └── ... (146 个技能)
+    └── ... (包含 `frontend-design`、`skill-creator`、`web-access` 等技能)
 ```
 
 ---
