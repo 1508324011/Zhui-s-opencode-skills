@@ -9,7 +9,7 @@ metadata:
     local-install-name: skill-creator
 ---
 
-This skill is adapted from Anthropic's upstream `skill-creator` skill for use in OpenCode. Use it to design, revise, validate, and package skills in the local OpenCode skill ecosystem. OpenCode-native defaults: use the normal skill directories (`.opencode/skills/` or `~/.config/opencode/skills/`), use task/subagent workflows for multi-run evaluations, use `scripts/quick_validate.py` and `scripts/package_skill.py` locally, and treat `scripts/run_eval.py`, `scripts/run_loop.py`, and `scripts/improve_description.py` as upstream Claude Code reference utilities because they still assume `claude -p` and `.claude/commands`.
+This skill is adapted from Anthropic's upstream `skill-creator` skill for use in OpenCode. Use it to design, revise, validate, and package skills in the local OpenCode skill ecosystem. OpenCode-native defaults: use the normal skill directories (`.opencode/skills/` or `~/.config/opencode/skills/`), use task/subagent workflows for multi-run evaluations, use `scripts/quick_validate.py` and `scripts/package_skill.py` locally, and treat `scripts/run_eval.py`, `scripts/run_loop.py`, and `scripts/improve_description.py` as upstream Claude Code reference utilities because they still assume `claude -p` and `.claude/commands`. Note that `scripts/quick_validate.py` depends on Python being able to import `yaml` (`PyYAML`), so fresh environments may need `python -m pip install PyYAML` before using the local validation/packaging helpers.
 
 # Skill Creator
 

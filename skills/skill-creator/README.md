@@ -15,6 +15,15 @@ This directory installs Anthropic's upstream `skill-creator` skill into the loca
 - The bundled `scripts/quick_validate.py` and `scripts/package_skill.py` remain directly usable here.
 - The bundled `scripts/run_eval.py`, `scripts/run_loop.py`, and `scripts/improve_description.py` are preserved for completeness but still target Claude Code internals and are not the default OpenCode path.
 
+## Local script dependencies
+
+- `scripts/quick_validate.py` and anything that imports it (including `scripts/package_skill.py`) require Python to have `PyYAML` available.
+- On a fresh machine, install it first if `import yaml` is unavailable:
+
+```bash
+python -m pip install PyYAML
+```
+
 ## Bundled upstream assets
 
 The original agents, assets, references, eval viewer, and scripts were copied into this local installation so the upstream skill remains inspectable and self-contained.
