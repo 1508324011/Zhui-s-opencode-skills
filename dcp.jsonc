@@ -1,22 +1,20 @@
 {
   "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json",
 
-  // Global DCP template for the superpowers / OMO line.
-  // Keep this aligned with the current official DCP schema.
-  "enabled": true,
+  // ============================================
+  // Dynamic Context Pruning Configuration
+  // ============================================
 
-  // Keep daily use quiet, but leave DCP active.
+  // Keep DCP enabled, but stay close to the current official schema.
+  "enabled": true,
   "debug": false,
   "pruneNotification": "minimal",
   "pruneNotificationType": "chat",
 
-  // Keep slash commands available.
+  // Keep DCP commands available while allowing automatic pruning.
   "commands": {
-    "enabled": true,
-    "protectedTools": []
+    "enabled": true
   },
-
-  // Let automatic strategies run without requiring manual mode.
   "manualMode": {
     "enabled": false,
     "automaticStrategies": true
@@ -28,23 +26,29 @@
     "turns": 4
   },
 
-  // Protect common project metadata and test files from file-path based pruning.
+  // Leave subagent conversations alone unless we explicitly decide otherwise.
+  "experimental": {
+    "allowSubAgents": false,
+    "customPrompts": false
+  },
+
+  // Protect common project metadata and test files from aggressive pruning.
   "protectedFilePatterns": [
-    "**/*.test.*",
-    "**/*.spec.*",
-    "**/package.json",
-    "**/requirements.txt",
-    "**/Cargo.toml"
+    "*.test.*",
+    "*.spec.*",
+    "package.json",
+    "requirements.txt",
+    "Cargo.toml"
   ],
 
-  // Stay conservative and close to documented defaults for the unified compress tool.
+  // Map the old 75% / 30% behavior onto the current compress limits.
   "compress": {
     "mode": "range",
     "permission": "allow",
     "showCompression": false,
     "summaryBuffer": true,
-    "maxContextLimit": 100000,
-    "minContextLimit": 50000,
+    "maxContextLimit": "75%",
+    "minContextLimit": "30%",
     "nudgeFrequency": 5,
     "iterationNudgeThreshold": 15,
     "nudgeForce": "soft",
@@ -53,13 +57,11 @@
 
   "strategies": {
     "deduplication": {
-      "enabled": true,
-      "protectedTools": []
+      "enabled": true
     },
     "purgeErrors": {
       "enabled": true,
-      "turns": 4,
-      "protectedTools": []
+      "turns": 4
     }
   }
 }

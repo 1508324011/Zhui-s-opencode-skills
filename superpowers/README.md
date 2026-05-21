@@ -1,13 +1,13 @@
 # Superpowers Line
 
-This line keeps the repository's shared skills and OMO configuration, but the actual Superpowers plugin and skill tree come from the official upstream repository.
+This line keeps the repository's shared skills and OpenAgent configuration, but the actual Superpowers plugin and skill tree come from the official upstream repository.
 
 ## What gets installed
 
 - Shared skills from this repository
-- `~/.config/opencode/oh-my-opencode.json`
+- `~/.config/opencode/oh-my-openagent.jsonc`
 - `~/.config/opencode/dcp.jsonc`
-- `~/.config/opencode/opencode.json`
+- `~/.config/opencode/opencode.jsonc` (preserved if already present)
 - `~/.config/opencode/superpowers` cloned from `https://github.com/obra/superpowers.git`
 - Symlinks:
   - `~/.config/opencode/plugins/superpowers.js`
@@ -19,6 +19,12 @@ No repository-local `./superpowers` plugin entry is required. The installer foll
 
 ```bash
 ./install.sh superpowers
+```
+
+If this server does not need bioinformatics / clinical shared skills:
+
+```bash
+./install.sh superpowers --exclude-bio-skills
 ```
 
 Use `--skip-npm-install` when validating the file layout without mutating global npm state.

@@ -1,0 +1,75 @@
+// Oh My OpenAgent 模型分配配置
+// 此文件不含敏感信息，可以直接提交到版本控制
+// 
+// 模型说明：
+// - zhui/gpt-5.3-codex: 深度推理 / 架构设计 / 规划
+// - zhui/gpt-5.4: 平衡型主力模型（检索、视觉、收尾）
+// - zhui/gpt-5.5: 主力执行 / 检查 / 调试
+//
+// 分配策略：
+// - 深度推理/架构设计 → zhui/gpt-5.3-codex
+// - 代码实现/检查/调试 → zhui/gpt-5.5
+// - 日常任务/外部检索/多模态 → zhui/gpt-5.4
+// - 只保留 zhui provider 示例；模板里示例包含 baseURL、apiKey 占位和 setCacheKey，不包含真实 key
+
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "zhui/gpt-5.3-codex"
+    },
+    "hephaestus": {
+      "model": "zhui/gpt-5.5"
+    },
+    "oracle": {
+      "model": "zhui/gpt-5.5"
+    },
+    "librarian": {
+      "model": "zhui/gpt-5.3-codex"
+    },
+    "explore": {
+      "model": "zhui/gpt-5.3-codex"
+    },
+    "multimodal-looker": {
+      "model": "zhui/gpt-5.4"
+    },
+    "prometheus": {
+      "model": "zhui/gpt-5.4"
+    },
+    "metis": {
+      "model": "zhui/gpt-5.3-codex"
+    },
+    "momus": {
+      "model": "zhui/gpt-5.3-codex"
+    },
+    "atlas": {
+      "model": "zhui/gpt-5.3-codex"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "zhui/gpt-5.4"
+    },
+    "ultrabrain": {
+      "model": "zhui/gpt-5.4"
+    },
+    "deep": {
+      "model": "zhui/gpt-5.5"
+    },
+    "artistry": {
+      "model": "zhui/gpt-5.3-codex"
+    },
+    "quick": {
+      "model": "zhui/gpt-5.3-codex"
+    },
+    "unspecified-low": {
+      "model": "zhui/gpt-5.3-codex"
+    },
+    "unspecified-high": {
+      "model": "zhui/gpt-5.4"
+    },
+    "writing": {
+      "model": "zhui/gpt-5.3-codex"
+    }
+  }
+}

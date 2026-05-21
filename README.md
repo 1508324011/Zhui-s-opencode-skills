@@ -2,7 +2,7 @@
 
 This repository now maintains two incompatible OpenCode install lines:
 
-- `superpowers`: OMO + DCP + upstream Superpowers repo
+- `superpowers`: OpenAgent + DCP + upstream Superpowers repo
 - `trellis`: OpenAgent + DCP + Trellis workflow skeleton
 
 Both lines install the shared `skills/` tree from this repository. The difference is in the installer, config templates, and extra skeleton directories.
@@ -23,17 +23,25 @@ cd Zhui-s-opencode-skills
 
 This installs:
 
-- `oh-my-opencode@latest`
+- `oh-my-openagent@latest`
 - `@tarquinen/opencode-dcp@latest`
 - shared `skills/`
 - upstream `superpowers` repository clone under `~/.config/opencode/superpowers`
 - symlinks:
-  - `~/.config/opencode/plugins/superpowers.js`
-  - `~/.config/opencode/skills/superpowers`
+    - `~/.config/opencode/plugins/superpowers.js`
+    - `~/.config/opencode/skills/superpowers`
+
+Optional server profile:
+
+```bash
+./install.sh superpowers --exclude-bio-skills
+```
+
+Use this on machines that do not need bioinformatics / clinical / omics / wet-lab related shared skills.
 
 Template sources:
 
-- `config/oh-my-opencode.json`
+- `config/oh-my-openagent.jsonc`
 - `config/opencode.json.example`
 - `dcp.jsonc`
 
@@ -89,7 +97,7 @@ Use this when you want to validate file layout without mutating global npm state
 
 | Item | superpowers | trellis |
 |---|---|---|
-| Primary plugin | `oh-my-opencode` | `oh-my-openagent` |
+| Primary plugin | `oh-my-openagent` | `oh-my-openagent` |
 | DCP | install | install |
 | Superpowers repo | upstream clone + symlinks | not installed |
 | `~/.opencode` skeleton | not managed | installed |
@@ -102,7 +110,7 @@ Use this when you want to validate file layout without mutating global npm state
 
 The superpowers line uses:
 
-- `config/oh-my-opencode.json`
+- `config/oh-my-openagent.jsonc`
 - `config/opencode.json.example`
 - `dcp.jsonc`
 
@@ -132,6 +140,7 @@ Notes:
 
 - repo-only skills remain in this repository
 - synchronized local skills are installed to both lines
+- `./install.sh --exclude-bio-skills` 会跳过生信/临床/组学/实验室平台相关目录
 - `skills/superpowers` is not treated as shared content; it comes from the upstream repo during superpowers installation
 
 ## Security

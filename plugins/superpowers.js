@@ -2,7 +2,8 @@
  * Superpowers plugin for OpenCode.ai
  *
  * Injects superpowers bootstrap context via system prompt transform.
- * Skills are discovered via OpenCode's native skill tool from symlinked directory.
+ * Resolve the real module path first so symlinked and direct installs both
+ * locate the bundled skills directory correctly.
  */
 
 import path from 'path';
@@ -10,7 +11,8 @@ import fs from 'fs';
 import os from 'os';
 import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const modulePath = fs.realpathSync(fileURLToPath(import.meta.url));
+const __dirname = path.dirname(modulePath);
 
 // Simple frontmatter extraction (avoid dependency on skills-core for bootstrap)
 const extractAndStripFrontmatter = (content) => {
