@@ -1,0 +1,56 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json",
+
+  // Keep DCP enabled, but make it much less noisy in daily use.
+  "enabled": true,
+  "debug": false,
+  "showUpdateToasts": false,
+  "pruneNotification": "minimal",
+  "pruneNotificationType": "chat",
+
+  // Keep slash commands available, but use DCP autonomously by default.
+  "commands": {
+    "enabled": true
+  },
+  "manualMode": {
+    "enabled": false,
+    "automaticStrategies": true
+  },
+
+  // Preserve a few recent turns before pruning tool-heavy coding sessions.
+  "turnProtection": {
+    "enabled": true,
+    "turns": 4
+  },
+
+  // Trellis + OMO already rely heavily on subagents/hook flows.
+  // Keep DCP scoped to the primary session unless we explicitly decide otherwise.
+  "experimental": {
+    "allowSubAgents": false,
+    "customPrompts": false
+  },
+
+  // Stay close to plugin defaults for stability.
+  "compress": {
+    "mode": "range",
+    "permission": "allow",
+    "showCompression": false,
+    "summaryBuffer": true,
+    "maxContextLimit": 100000,
+    "minContextLimit": 50000,
+    "nudgeFrequency": 5,
+    "iterationNudgeThreshold": 15,
+    "nudgeForce": "soft",
+    "protectUserMessages": false
+  },
+
+  "strategies": {
+    "deduplication": {
+      "enabled": true
+    },
+    "purgeErrors": {
+      "enabled": true,
+      "turns": 4
+    }
+  }
+}
