@@ -1,63 +1,42 @@
-# Sync Trellis Models
+# Trellis Model Sync (Deprecated)
 
-Sync the active Trellis subagent model selections from `~/.config/opencode/oh-my-openagent.jsonc` into the active OpenCode runtime files.
+This repository no longer rewrites vendored Trellis runtime model values from `~/.config/opencode/oh-my-openagent.jsonc`.
 
-[!] Use this command after editing `categories.trellis-*` in `~/.config/opencode/oh-my-openagent.jsonc`, or after reinstalling/updating Trellis.
+The old sync layer depended on fixed file paths and Markdown `Task(... model: ...)` structure, which made future Trellis upstream updates unnecessarily fragile.
 
 ---
 
-## Sync Procedure
+## What Changed
 
-### Step 1: Preview the resolved model mapping
+- `categories.trellis-*` in `~/.config/opencode/oh-my-openagent.jsonc` are no longer treated as the source of truth for vendored Trellis runtime files.
+- `/trellis:sync-models` is kept only as a compatibility notice.
+- Trellis runtime defaults now live directly in these files:
+  - `.opencode/agents/dispatch.md`
+  - `.opencode/agents/trellis-plan.md`
+  - `.opencode/commands/trellis/start.md`
+
+---
+
+## If You Need to Change Trellis Model Defaults
+
+1. Check the current upstream Trellis templates first.
+2. Edit the vendored runtime files intentionally.
+3. Verify the active `model:` lines you changed.
+
+Example verification:
 
 ```bash
-python3 /home/zhurui/.trellis/scripts/sync_trellis_models_from_omo.py --dry-run
+grep -n 'model:' /home/zhurui/.opencode/agents/dispatch.md /home/zhurui/.opencode/agents/trellis-plan.md /home/zhurui/.opencode/commands/trellis/start.md
 ```
 
-Confirm the resolved models for:
-- `research`
-- `implement`
-- `check`
-- `debug`
-- `finish`
+---
 
-If the script fails, stop and report which `categories.trellis-*` entries are missing or invalid.
+## Compatibility Behavior
 
-### Step 2: Apply the sync
+If you still run:
 
 ```bash
 python3 /home/zhurui/.trellis/scripts/sync_trellis_models_from_omo.py
 ```
 
-This sync updates the active runtime files:
-- `.opencode/agents/dispatch.md`
-- `.opencode/agents/trellis-plan.md`
-- `.opencode/commands/trellis/start.md`
-
-### Step 3: Verify the active runtime
-
-```bash
-python3 /home/zhurui/.trellis/scripts/sync_trellis_models_from_omo.py --dry-run
-grep -n 'model:' /home/zhurui/.opencode/agents/dispatch.md /home/zhurui/.opencode/agents/trellis-plan.md /home/zhurui/.opencode/commands/trellis/start.md
-```
-
-Report:
-- the resolved model mapping
-- which files changed or remained unchanged
-- whether the active Trellis files now match the configuration in `~/.config/opencode/oh-my-openagent.jsonc`
-
----
-
-## Source of Truth
-
-Do **not** manually maintain model selections in the active `.opencode` Trellis files.
-
-The source of truth is:
-- `~/.config/opencode/oh-my-openagent.jsonc`
-- `categories.trellis-research`
-- `categories.trellis-implement`
-- `categories.trellis-check`
-- `categories.trellis-debug`
-- `categories.trellis-finish`
-
-Update those values first, then run `/trellis:sync-models` again.
+the script now prints a deprecation notice and exits without rewriting files.
