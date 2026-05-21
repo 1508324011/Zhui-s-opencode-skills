@@ -61,6 +61,7 @@ temp/
 .cache/
 *.tmp
 *.bak
+.claude_resources.json
 
 # =====================
 # Build & Dependency
