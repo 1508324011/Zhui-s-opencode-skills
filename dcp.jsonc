@@ -1,52 +1,65 @@
 {
   "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json",
-  
-  // ============================================
-  // Dynamic Context Pruning Configuration
-  // ============================================
-  
-  // Enable DCP (set to false to temporarily disable)
+
+  // Global DCP template for the superpowers / OMO line.
+  // Keep this aligned with the current official DCP schema.
   "enabled": true,
-  
-  // Pruning strategy: aggressive | moderate | conservative
-  // - aggressive: Maximize context savings, may lose more detail
-  // - moderate: Balanced approach (recommended)
-  // - conservative: Keep more context, prune only obvious noise
-  "strategy": "aggressive",
-  
-  // Minimum context to preserve (0.0-1.0)
-  // Always keep at least 30% of core context
-  "minContextThreshold": 0.3,
-  
-  // Auto-prune interval (every N turns)
-  "autoPruneInterval": 5,
-  
-  // Patterns to NEVER prune (case-insensitive match)
-  "preservePatterns": [
-    "TODO",
-    "FIXME",
-    "CRITICAL",
-    "WARNING",
-    "error",
-    "failed",
-    "failure",
-    "exception",
-    "bug",
-    "issue"
+
+  // Keep daily use quiet, but leave DCP active.
+  "debug": false,
+  "pruneNotification": "minimal",
+  "pruneNotificationType": "chat",
+
+  // Keep slash commands available.
+  "commands": {
+    "enabled": true,
+    "protectedTools": []
+  },
+
+  // Let automatic strategies run without requiring manual mode.
+  "manualMode": {
+    "enabled": false,
+    "automaticStrategies": true
+  },
+
+  // Preserve a few recent turns before pruning tool-heavy sessions.
+  "turnProtection": {
+    "enabled": true,
+    "turns": 4
+  },
+
+  // Protect common project metadata and test files from file-path based pruning.
+  "protectedFilePatterns": [
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/package.json",
+    "**/requirements.txt",
+    "**/Cargo.toml"
   ],
-  
-  // File patterns to always preserve in context
-  "preserveFilePatterns": [
-    "*.test.*",
-    "*.spec.*",
-    "package.json",
-    "requirements.txt",
-    "Cargo.toml"
-  ],
-  
-  // Maximum context window usage before triggering prune (percentage)
-  "maxContextUsagePercent": 75,
-  
-  // Enable debug logging
-  "debugLogging": false
+
+  // Stay conservative and close to documented defaults for the unified compress tool.
+  "compress": {
+    "mode": "range",
+    "permission": "allow",
+    "showCompression": false,
+    "summaryBuffer": true,
+    "maxContextLimit": 100000,
+    "minContextLimit": 50000,
+    "nudgeFrequency": 5,
+    "iterationNudgeThreshold": 15,
+    "nudgeForce": "soft",
+    "protectUserMessages": false
+  },
+
+  "strategies": {
+    "deduplication": {
+      "enabled": true,
+      "protectedTools": []
+    },
+    "purgeErrors": {
+      "enabled": true,
+      "turns": 4,
+      "protectedTools": []
+    }
+  }
 }

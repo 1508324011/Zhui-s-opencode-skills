@@ -4,7 +4,6 @@
   // Keep DCP enabled, but make it much less noisy in daily use.
   "enabled": true,
   "debug": false,
-  "showUpdateToasts": false,
   "pruneNotification": "minimal",
   "pruneNotificationType": "chat",
 
