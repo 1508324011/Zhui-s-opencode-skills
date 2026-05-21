@@ -1,112 +1,55 @@
-# OpenCode 插件配置指南
+# Superpowers / OMO Line Templates
 
-本目录包含 OpenCode 核心插件的配置示例。
+本目录现在只承载 **superpowers / OMO** 线路使用的模板文件。
 
-## 📦 核心插件
+## 这条线会安装什么
 
-### 1. Oh My OpenCode
+- `oh-my-opencode@latest`
+- `@tarquinen/opencode-dcp@latest`
+- 共享 `skills/`
+- 官方 `superpowers` 仓库 clone
+- 两个 symlink：
+  - `~/.config/opencode/plugins/superpowers.js`
+  - `~/.config/opencode/skills/superpowers`
 
-**npm 包**: `oh-my-opencode@latest`  
-**GitHub**: https://github.com/code-yeongyu/oh-my-opencode
+## 本目录中的模板
 
-**功能**:
-- 多 Agent 编排（Sisyphus、Hephaestus、Prometheus 等）
-- `ultrawork`/`ulw` 一键执行命令
-- Hash-anchored 编辑工具
-- LSP + AST-Grep 集成
-- 46 个生命周期 Hooks
+- `oh-my-opencode.json`
+- `opencode.json.example`
+- `README.md`（本文件）
 
-**配置**: `oh-my-opencode.json` - 定义 Agent 和 Category 的模型分配
+仓库根目录另外还会为这条线提供：
 
-### 2. Dynamic Context Pruning (DCP)
+- `dcp.jsonc`
 
-**npm 包**: `@tarquinen/opencode-dcp@latest`  
-**GitHub**: https://github.com/Opencode-DCP/opencode-dynamic-context-pruning
+## 安装
 
-**功能**:
-- `distill` - 总结后删除冗余内容
-- `compress` - 压缩对话段落
-- `prune` - 移除已完成内容
-- 自动去重、覆盖写入、清除错误
-- 减少 30-50% token 消耗
+```bash
+./install.sh superpowers
+```
 
-**配置**: `dcp.jsonc` - 定义上下文限制和 pruning 策略
-
-### 3. OpenCode Memory
-
-**npm 包**: `opencode-mem@latest`  
-**GitHub**: https://github.com/tickernelz/opencode-mem
-
-**功能**:
-- 本地向量数据库（SQLite + HNSW）
-- 跨会话持久记忆
-- 自动用户画像学习
-- Web UI (http://127.0.0.1:4747)
-
-**配置**: `opencode-mem.jsonc` - 定义记忆系统参数和 API Key
-
-## 🔧 安装方法
-
-### 方法 1: 使用 install.sh（推荐）
+不带模式参数时：
 
 ```bash
 ./install.sh
 ```
 
-自动安装所有三个插件。
+默认仍然安装 superpowers 线，以保持兼容旧行为。
 
-### 方法 2: 手动安装
+## 手动安装（仅在需要时）
 
 ```bash
-# 全局安装
 npm install -g oh-my-opencode
 npm install -g @tarquinen/opencode-dcp
-npm install -g opencode-mem
-
-# 或本地安装到 OpenCode 配置目录
-cd ~/.config/opencode
-npm install oh-my-opencode
-npm install @tarquinen/opencode-dcp
-npm install opencode-mem
 ```
 
-## 📋 配置步骤
+## 与 Trellis 线的区别
 
-1. **编辑 opencode.json**
-   ```bash
-   nano ~/.config/opencode/opencode.json
-   ```
-   填入 API Key 并确保 plugin 数组包含三个插件
+- Trellis 线模板位于 `../trellis/config/`
+- Trellis 线安装 `oh-my-openagent`
+- Trellis 线额外安装 `~/.opencode/` skeleton 和 `.trellis` project template
 
-2. **编辑 oh-my-opencode.json**
-   ```bash
-   nano ~/.config/opencode/oh-my-opencode.json
-   ```
-   定义 Agent 和 Category 的模型分配
+## 注意
 
-3. **编辑 dcp.jsonc**（可选）
-   ```bash
-   nano ~/.config/opencode/dcp.jsonc
-   ```
-   配置上下文限制和 pruning 策略
-
-4. **编辑 opencode-mem.jsonc**
-   ```bash
-   nano ~/.config/opencode/opencode-mem.jsonc
-   ```
-   配置记忆系统和 API Key
-
-5. **重启 OpenCode**
-   ```bash
-   opencode
-   ```
-
-## ✅ 验证安装
-
-在 OpenCode 中：
-
-```
-/models           # 查看可用模型
-/plugins          # 查看已安装插件
-/dcp stats        # 查看 DCP 统计（如果已安装 DCP）
-```
+- `opencode.json.example` 现在与根目录示例保持一致，只保留 `zhui` provider 示例，并展示 `baseURL`、`apiKey` 占位和 `setCacheKey`
+- superpowers 插件通过 `~/.config/opencode/plugins/superpowers.js` symlink 接入
