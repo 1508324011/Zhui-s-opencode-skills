@@ -302,12 +302,12 @@ cp config.json.example config.json.local
 
 ```bash
 # ~/.bashrc 或 ~/.zshrc
-export MEMORY_API_KEY="sk-sp-..."
+export ZHUI_API_KEY="sk-YOUR_ZHUI_API_KEY_HERE"
 export DATABASE_URL="postgresql://..."
 
 # 代码中读取
 import os
-api_key = os.environ.get("MEMORY_API_KEY")
+api_key = os.environ.get("ZHUI_API_KEY")
 ```
 
 ### 3. 配置环境变量
@@ -315,7 +315,7 @@ api_key = os.environ.get("MEMORY_API_KEY")
 ```jsonc
 // config.jsonc
 {
-  "memoryApiKey": "${MEMORY_API_KEY}"  // 从环境变量读取
+  "apiKey": "${ZHUI_API_KEY}"  // 从环境变量读取
 }
 ```
 
@@ -379,14 +379,14 @@ api_key = os.environ.get("MEMORY_API_KEY")
 ### 错误 1: "检测到大模型 API Key"
 
 ```
-❌ 错误：检测到 API Key (sk-sp-*)
+❌ 错误：检测到 API Key
    文件：config.jsonc:5
-   内容："memoryApiKey": "sk-sp-58b5ab23..."
+   内容："apiKey": "<real-key-value>"
 
 解决方案:
 1. 立即轮换 API Key
-2. 使用占位符替换： "sk-sp-YOUR_KEY_HERE"
-3. 或使用环境变量： "${MEMORY_API_KEY}"
+2. 使用占位符替换： "sk-YOUR_ZHUI_API_KEY_HERE"
+3. 或使用环境变量： "${ZHUI_API_KEY}"
 ```
 
 ### 错误 2: "尝试提交 .env 文件"

@@ -1,21 +1,18 @@
 ---
 name: matchms
-description: Spectral similarity and compound identification for metabolomics. Use
-  for comparing mass spectra, computing similarity scores (cosine, modified cosine),
-  and identifying unknown compounds from spectral libraries. Best for metabolite identification,
-  spectral matching, library searching. For full LC-MS/MS proteomics pipelines use
-  pyopenms.
+description: Spectral similarity and candidate ranking for metabolomics. Use for spectrum-level comparison, cosine/modified cosine scores, library matching, and candidate lists. End-to-end metabolite identification workflows are owned by proteomics-metabolomics-workflows; full LC-MS/MS proteomics pipelines use proteomics-metabolomics-workflows or pyopenms for API details.
 license: Apache-2.0 license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Matchms
 
 ## Overview
 
-Matchms is an open-source Python library for mass spectrometry data processing and analysis. Import spectra from various formats, standardize metadata, filter peaks, calculate spectral similarities, and build reproducible analytical workflows.
+Matchms is an open-source Python library for mass spectrometry data processing and analysis. Import spectra from various formats, standardize metadata, filter peaks, and calculate spectral similarities.
+
+Use this skill for spectrum-level processing and scoring only; multi-step LC-MS/MS pipeline orchestration and final interpretation are delegated to `proteomics-metabolomics-workflows`.
 
 ## Core Capabilities
 

@@ -1,12 +1,9 @@
 ---
 name: clinpgx-database
-description: Access ClinPGx pharmacogenomics data (successor to PharmGKB). Query gene-drug
-  interactions, CPIC guidelines, allele functions, for precision medicine and genotype-guided
-  dosing decisions.
+description: Access ClinPGx pharmacogenomics data (successor to PharmGKB). Query gene-drug interactions, CPIC guidelines, allele functions, regulatory labels, and pharmacogenomic evidence. For end-to-end genotype-to-therapy interpretation, phenoconversion decisions, and final clinical recommendations use clinical-genomics-interpretation.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # ClinPGx Database
@@ -24,11 +21,12 @@ This skill should be used when:
 - **Allele information**: Retrieving allele function, frequency, and phenotype data
 - **Drug labels**: Exploring FDA and other regulatory pharmacogenomic drug labeling
 - **Pharmacogenomic annotations**: Accessing curated literature on gene-drug-disease relationships
-- **Clinical decision support**: Using PharmDOG tool for phenoconversion and custom genotype interpretation
-- **Precision medicine**: Implementing pharmacogenomic testing in clinical practice
+- **Clinical evidence retrieval for decision support systems**: Using PharmDOG/ClinPGx outputs as data sources, not final genotype-to-therapy recommendations
+- **Precision medicine evidence**: Retrieving pharmacogenomic evidence for downstream precision medicine workflows
 - **Drug metabolism**: Understanding CYP450 and other pharmacogene functions
-- **Personalized dosing**: Finding genotype-guided dosing recommendations
+- **Personalized dosing evidence**: Finding source recommendations without making final dosing decisions in this skill
 - **Adverse drug reactions**: Identifying genetic risk factors for drug toxicity
+- **Scope boundary**: Use this skill for direct ClinPGx, CPIC, label, and allele evidence lookup; use clinical-genomics-interpretation for end-to-end PGx interpretation and final recommendation logic
 
 ## Installation and Setup
 
@@ -280,7 +278,7 @@ pathways = response.json()
 
 ## Query Workflow
 
-### Workflow 1: Clinical Decision Support for Drug Prescription
+### Query Pattern 1: Retrieve PGx Evidence for Downstream Clinical Decision Support
 
 1. **Identify patient genotype** for relevant pharmacogenes:
    ```python
@@ -335,7 +333,7 @@ pathways = response.json()
                print(f"{gene} - {pair['drug']}: {pair['cpicLevel']}")
    ```
 
-4. **Generate patient report** with actionable pharmacogenomic findings.
+4. **Export structured evidence** for downstream report or interpretation workflows.
 
 ### Workflow 3: Drug Safety Assessment
 
@@ -499,22 +497,22 @@ gene_data = cached_query(
 
 ## PharmDOG Tool
 
-PharmDOG (formerly DDRx) is ClinPGx's clinical decision support tool for interpreting pharmacogenomic test results:
+PharmDOG (formerly DDRx) is ClinPGx's clinical decision support tool for interpreting pharmacogenomic test results. Within this skill, treat PharmDOG output as evidence to retrieve and structure; use `clinical-genomics-interpretation` for end-to-end genotype-to-therapy synthesis, phenoconversion decisions, and final recommendation logic.
 
 **Key features**:
 - **Phenoconversion calculator**: Adjusts phenotype predictions for drug-drug interactions affecting CYP2D6
 - **Custom genotypes**: Input patient genotypes to get phenotype predictions
-- **QR code sharing**: Generate shareable patient reports
+- **QR code sharing**: Generate shareable PharmDOG evidence reports
 - **Flexible guidance sources**: Select which guidelines to apply (CPIC, DPWG, FDA)
 - **Multi-drug analysis**: Assess multiple medications simultaneously
 
 **Access**: Available at https://www.clinpgx.org/pharmacogenomic-decision-support
 
 **Use cases**:
-- Clinical interpretation of PGx panel results
-- Medication review for patients with known genotypes
-- Patient education materials
-- Point-of-care decision support
+- Evidence retrieval for PGx panel interpretation workflows
+- Medication evidence review for patients with known genotypes
+- Structured evidence for patient education materials
+- Evidence input for point-of-care decision support
 
 ## Resources
 

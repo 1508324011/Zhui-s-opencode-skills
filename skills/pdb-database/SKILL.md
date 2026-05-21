@@ -1,12 +1,9 @@
 ---
 name: pdb-database
-description: Access RCSB PDB for 3D protein/nucleic acid structures. Search by text/sequence/structure,
-  download coordinates (PDB/mmCIF), retrieve metadata, for structural biology and
-  drug discovery.
+description: Access RCSB PDB for 3D protein/nucleic acid structures. Search by text/sequence/structure, download coordinates (PDB/mmCIF), retrieve metadata, for structural biology and drug discovery.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # PDB Database

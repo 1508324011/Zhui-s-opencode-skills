@@ -1,14 +1,9 @@
 ---
 name: geniml
-description: This skill should be used when working with genomic interval data (BED
-  files) for machine learning tasks. Use for training region embeddings (Region2Vec,
-  BEDspace), single-cell ATAC-seq analysis (scEmbed), building consensus peaks (universes),
-  or any ML-based analysis of genomic regions. Applies to BED file collections, scATAC-seq
-  data, chromatin accessibility datasets, and region-based genomic feature learning.
+description: Genomic interval machine learning skill for BED file collections and region-based feature learning. Use for Region2Vec, BEDspace, scEmbed, consensus peak universes, interval tokenization, embeddings, similarity search, and ML primitives on genomic regions. For assay-level ATAC, ChIP, Hi-C, methylation, or regulatory workflows use epigenomics-workflows; for single-cell multiome or scATAC cell workflows use single-cell-workflows.
 license: BSD-2-Clause license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Geniml: Genomic Interval Machine Learning
@@ -16,6 +11,8 @@ metadata:
 ## Overview
 
 Geniml is a Python package for building machine learning models on genomic interval data from BED files. It provides unsupervised methods for learning embeddings of genomic regions, single cells, and metadata labels, enabling similarity searches, clustering, and downstream ML tasks.
+
+Use this skill for interval-ML primitives after the assay-level plan is clear. For full ATAC/ChIP/Hi-C/methylation regulatory analysis, start with `epigenomics-workflows`; for complete scATAC or multiome cell-level analysis, start with `single-cell-workflows`.
 
 ## Installation
 
@@ -72,7 +69,7 @@ Train shared embeddings for region sets and metadata labels using StarSpace.
 
 Train Region2Vec models on single-cell ATAC-seq data for cell-level embeddings.
 
-**Use for:** scATAC-seq clustering, cell-type annotation, dimensionality reduction of single cells, integration with scanpy workflows.
+**Use for:** scATAC-seq embedding primitives, dimensionality reduction inputs, and interval-token based features after a single-cell workflow has defined the analysis structure.
 
 **Workflow:**
 1. Prepare AnnData with peak coordinates

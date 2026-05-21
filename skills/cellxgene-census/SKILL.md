@@ -1,13 +1,9 @@
 ---
 name: cellxgene-census
-description: Query the CELLxGENE Census (61M+ cells) programmatically. Use when you
-  need expression data across tissues, diseases, or cell types from the largest curated
-  single-cell atlas. Best for population-scale queries, reference atlas comparisons.
-  For analyzing your own data use scanpy or scvi-tools.
+description: Query the CELLxGENE Census programmatically. Use when you need expression data across tissues, diseases, or cell types from a curated single-cell atlas, population-scale queries, metadata exploration, and reference atlas comparisons. For analyzing your own end-to-end scRNA, CITE-seq, or multiome data use single-cell-workflows; for Scanpy APIs use scanpy; for probabilistic models use scvi-tools.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # CZ CELLxGENE Census
@@ -33,6 +29,8 @@ This skill should be used when:
 - Integrating Census data with scanpy or other analysis frameworks
 - Computing statistics across millions of cells
 - Accessing pre-calculated embeddings or model predictions
+
+For a full analysis of the user's own count matrix or Cell Ranger output, use `single-cell-workflows`. Use this skill when the central task is Census discovery, extraction, or reference-atlas evidence.
 
 ## Installation and Setup
 

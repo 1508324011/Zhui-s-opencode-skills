@@ -1,20 +1,16 @@
 ---
 name: scanpy
-description: Standard single-cell RNA-seq analysis pipeline. Use for QC, normalization,
-  dimensionality reduction (PCA/UMAP/t-SNE), clustering, differential expression,
-  and visualization. Best for exploratory scRNA-seq analysis with established workflows.
-  For deep learning models use scvi-tools; for data format questions use anndata.
+description: Scanpy Python toolkit for standard scRNA-seq analysis steps including QC, normalization, PCA, UMAP, t-SNE, clustering, differential expression, and visualization. Use for Scanpy API implementation and exploratory analysis inside AnnData. For complete scRNA, CITE-seq, multiome, perturb-seq, or annotation workflows use single-cell-workflows; for spatial workflows use spatial-transcriptomics; for data format questions use anndata.
 license: SD-3-Clause license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Scanpy: Single-Cell Analysis
 
 ## Overview
 
-Scanpy is a scalable Python toolkit for analyzing single-cell RNA-seq data, built on AnnData. Apply this skill for complete single-cell workflows including quality control, normalization, dimensionality reduction, clustering, marker gene identification, visualization, and trajectory analysis.
+Scanpy is a scalable Python toolkit for analyzing single-cell RNA-seq data, built on AnnData. Apply this skill for Scanpy-specific implementation details and exploratory single-cell steps. Use `single-cell-workflows` when the task asks for an end-to-end or multi-sample study design.
 
 ## When to Use This Skill
 
@@ -26,6 +22,8 @@ This skill should be used when:
 - Annotating cell types based on gene expression
 - Conducting trajectory inference or pseudotime analysis
 - Generating publication-quality single-cell plots
+
+For complete count-to-annotation, CITE-seq, multiome, perturb-seq, lineage, communication, or multi-sample integration workflows, use `single-cell-workflows` as the top-level planner and return here for Scanpy API details.
 
 ## Quick Start
 

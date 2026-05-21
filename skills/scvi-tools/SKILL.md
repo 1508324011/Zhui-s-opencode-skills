@@ -1,13 +1,9 @@
 ---
 name: scvi-tools
-description: Deep generative models for single-cell omics. Use when you need probabilistic
-  batch correction (scVI), transfer learning, differential expression with uncertainty,
-  or multi-modal integration (TOTALVI, MultiVI). Best for advanced modeling, batch
-  effects, multimodal data. For standard analysis pipelines use scanpy.
+description: Deep generative models for single-cell omics. Use for probabilistic batch correction, scVI, scANVI, totalVI, MultiVI, DestVI, transfer learning, differential expression with uncertainty, and multimodal modeling. Best for model-level design and implementation. For complete single-cell workflows use single-cell-workflows; for spatial deconvolution or mapping workflows use spatial-transcriptomics.
 license: BSD-3-Clause license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # scvi-tools
@@ -27,6 +23,8 @@ Use this skill when:
 - Conducting cell type annotation or transfer learning tasks
 - Working with specialized single-cell modalities (methylation, cytometry, RNA velocity)
 - Building custom probabilistic models for single-cell analysis
+
+When scvi-tools is one step inside a complete count-to-annotation, multi-sample integration, CITE-seq, multiome, or spatial deconvolution workflow, use `single-cell-workflows` or `spatial-transcriptomics` first and return here for model setup and training details.
 
 ## Core Capabilities
 

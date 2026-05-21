@@ -1,12 +1,9 @@
 ---
 name: string-database
-description: Query STRING API for protein-protein interactions (59M proteins, 20B
-  interactions). Network analysis, GO/KEGG enrichment, interaction discovery, 5000+
-  species, for systems biology.
+description: Query STRING API for protein-protein interactions across 59M proteins and 20B interactions. Use for direct network retrieval, GO/KEGG enrichment service calls, interaction discovery, modules, and connectivity on prepared protein lists. For DE-to-pathway interpretation use omics-differential-workflows; for cross-assay regulatory interpretation use epigenomics-workflows.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # STRING Database
@@ -26,6 +23,7 @@ This skill should be used when:
 - Analyzing homology and protein family relationships
 - Conducting cross-species protein interaction comparisons
 - Identifying hub proteins and network connectivity patterns
+- Direct STRING API work on prepared protein lists; upstream DE result generation, ranked-list construction, pathway workflow planning, and regulatory-assay integration should use `omics-differential-workflows` or `epigenomics-workflows`
 
 ## Quick Start
 

@@ -1,20 +1,16 @@
 ---
 name: histolab
-description: Lightweight WSI tile extraction and preprocessing. Use for basic slide
-  processing tissue detection, tile extraction, stain normalization for H&E images.
-  Best for simple pipelines, dataset preparation, quick tile-based analysis. For advanced
-  spatial proteomics, multiplexed imaging, or deep learning pipelines use pathml.
+description: Lightweight WSI tile extraction and preprocessing. Use for basic slide processing, tissue detection, tile extraction, and stain normalization for H&E images. Best for simple pipelines, dataset preparation, and quick tile-based analysis. For advanced spatial proteomics, multiplexed imaging, or deep learning pipelines use pathml; for spatial transcriptomics FOV and image-coordinate workflows use spatial-transcriptomics.
 license: Apache-2.0 license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Histolab
 
 ## Overview
 
-Histolab is a Python library for processing whole slide images (WSI) in digital pathology. It automates tissue detection, extracts informative tiles from gigapixel images, and prepares datasets for deep learning pipelines. The library handles multiple WSI formats, implements sophisticated tissue segmentation, and provides flexible tile extraction strategies.
+Histolab is a Python library for processing whole slide images (WSI) in digital pathology. It automates tissue detection, extracts informative tiles from gigapixel images, and prepares datasets for deep learning pipelines. The library handles multiple WSI formats, implements sophisticated tissue segmentation, and provides flexible tile extraction strategies. If the request depends on spatial transcriptomics coordinates, FOV output compatibility, or image-to-expression alignment, use `spatial-transcriptomics` as the top-level workflow skill.
 
 ## Installation
 

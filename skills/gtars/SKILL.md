@@ -1,13 +1,9 @@
 ---
 name: gtars
-description: High-performance toolkit for genomic interval analysis in Rust with Python
-  bindings. Use when working with genomic regions, BED files, coverage tracks, overlap
-  detection, tokenization for ML models, or fragment analysis in computational genomics
-  and machine learning applications.
+description: High-performance toolkit for genomic interval analysis in Rust with Python bindings. Use for implementation-level genomic interval primitives including BED overlap, coverage tracks, tokenization for ML models, fragment splitting, scoring, and reference sequence retrieval. For assay-level ATAC, ChIP, Hi-C, methylation, or regulatory interpretation workflows use epigenomics-workflows.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Gtars: Genomic Tools and Algorithms in Rust
@@ -23,6 +19,8 @@ Use this skill when working with:
 - Genomic ML preprocessing and tokenization
 - Fragment analysis in single-cell genomics
 - Reference sequence retrieval and validation
+
+Use `gtars` for fast interval and coverage operations after the workflow contract is known. Complete epigenomics assay planning and biological interpretation should start with `epigenomics-workflows`.
 
 ## Installation
 

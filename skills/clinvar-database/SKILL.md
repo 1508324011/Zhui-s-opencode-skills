@@ -1,12 +1,9 @@
 ---
 name: clinvar-database
-description: Query NCBI ClinVar for variant clinical significance. Search by gene/position,
-  interpret pathogenicity classifications, access via E-utilities API or FTP, annotate
-  VCFs, for genomic medicine.
+description: Query NCBI ClinVar for variant clinical significance. Search by gene/position, retrieve pathogenicity classifications, access via E-utilities API or FTP, annotate VCFs, for genomic medicine. For raw read processing and primary variant detection use ngs-read-processing and variant-calling; this skill focuses on ClinVar data retrieval, classification lookup, and annotation. End-to-end clinical interpretation is handled by clinical-genomics-interpretation.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # ClinVar Database
@@ -20,12 +17,14 @@ ClinVar is NCBI's freely accessible archive of reports on relationships between 
 This skill should be used when:
 
 - Searching for variants by gene, condition, or clinical significance
-- Interpreting clinical significance classifications (pathogenic, benign, VUS)
+- Retrieving and explaining ClinVar clinical significance classifications (pathogenic, benign, VUS)
 - Accessing ClinVar data programmatically via E-utilities API
 - Downloading and processing bulk data from FTP
 - Understanding review status and star ratings
-- Resolving conflicting variant interpretations
+- Reviewing conflicting ClinVar submissions and evidence fields for downstream interpretation
 - Annotating variant call sets with clinical significance
+- Use after variants are called; not for generating variant calls from FASTQ/BAM
+- Scope boundary: use this skill for ClinVar evidence extraction and annotation; final variant interpretation synthesis and clinical recommendation logic belong to clinical-genomics-interpretation
 
 ## Core Capabilities
 

@@ -1,13 +1,9 @@
 ---
 name: kegg-database
-description: Direct REST API access to KEGG (academic use only). Pathway analysis,
-  gene-pathway mapping, metabolic pathways, drug interactions, ID conversion. For
-  Python workflows with multiple databases, prefer bioservices. Use this for direct
-  HTTP/REST work or KEGG-specific control.
+description: Direct REST API access to KEGG for academic use. Use for KEGG-specific pathway entries, gene-pathway mapping, metabolic pathways, drug interactions, and ID conversion via REST. For Python workflows with multiple databases, prefer bioservices. For DE-to-pathway or enrichment workflows from omics results use omics-differential-workflows; for regulatory cross-assay interpretation use epigenomics-workflows.
 license: Non-academic use of KEGG requires a commercial license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # KEGG Database
@@ -21,6 +17,8 @@ KEGG (Kyoto Encyclopedia of Genes and Genomes) is a comprehensive bioinformatics
 ## When to Use This Skill
 
 This skill should be used when querying pathways, genes, compounds, enzymes, diseases, and drugs across multiple organisms using KEGG's REST API.
+
+Use it for direct lookup/API control on prepared identifiers. Do not use it to plan upstream differential-expression, ranked-list, ORA/GSEA, or regulatory-assay workflows; use `omics-differential-workflows` or `epigenomics-workflows` for those.
 
 ## Quick Start
 

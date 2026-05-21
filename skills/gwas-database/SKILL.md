@@ -1,12 +1,9 @@
 ---
 name: gwas-database
-description: Query NHGRI-EBI GWAS Catalog for SNP-trait associations. Search variants
-  by rs ID, disease/trait, gene, retrieve p-values and summary statistics, for genetic
-  epidemiology and polygenic risk scores.
+description: Query NHGRI-EBI GWAS Catalog for SNP-trait associations. Search variants by rs ID, disease/trait, gene, retrieve p-values and summary statistics, for genetic epidemiology and polygenic risk scores. For sample-level variant detection from sequencing data use variant-calling; this skill is for post-calling association evidence retrieval and trait-association analysis inputs. Clinical interpretation synthesis belongs to clinical-genomics-interpretation. For causal-inference workflows from GWAS summary statistics, such as Mendelian randomization, colocalization, fine-mapping, mediation, or instrument selection and validation, use causal-genomics-workflows.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # GWAS Catalog Database
@@ -29,6 +26,8 @@ This skill should be used when queries involve:
 - **Polygenic risk scores**: Identifying variants for risk prediction models
 - **Functional genomics**: Understanding variant effects and genomic context
 - **Systematic reviews**: Comprehensive literature synthesis of genetic associations
+- **Post-calling association evidence**: Use after variants are called; not for generating per-sample calls from FASTQ/BAM
+- **Scope boundary**: Provide GWAS association evidence and metadata only; do not produce end-to-end clinical genomic interpretation within this skill. Causal inference and causal gene prioritization belong to causal-genomics-workflows.
 
 ## Core Capabilities
 

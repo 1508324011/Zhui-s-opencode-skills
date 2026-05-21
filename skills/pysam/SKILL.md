@@ -1,12 +1,9 @@
 ---
 name: pysam
-description: Genomic file toolkit. Read/write SAM/BAM/CRAM alignments, VCF/BCF variants,
-  FASTA/FASTQ sequences, extract regions, calculate coverage, for NGS data processing
-  pipelines.
+description: Genomic file toolkit. Read/write SAM/BAM/CRAM alignments, VCF/BCF variants, FASTA/FASTQ sequences, extract regions, calculate coverage, for NGS data processing pipelines. For end-to-end read preprocessing workflows use ngs-read-processing; for pipeline-level variant calling orchestration use variant-calling.
 license: MIT license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Pysam
@@ -25,7 +22,7 @@ This skill should be used when:
 - Calculating coverage or read depth
 - Implementing bioinformatics analysis pipelines
 - Quality control of sequencing data
-- Variant calling and annotation workflows
+- Supporting I/O and evidence extraction for variant workflows, not end-to-end calling orchestration
 
 ## Quick Start
 

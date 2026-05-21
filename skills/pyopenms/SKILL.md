@@ -1,14 +1,9 @@
 ---
 name: pyopenms
-description: Complete mass spectrometry analysis platform. Use for proteomics workflows
-  feature detection, peptide identification, protein quantification, and complex LC-MS/MS
-  pipelines. Supports extensive file formats and algorithms. Best for proteomics,
-  comprehensive MS data processing. For simple spectral comparison and metabolite
-  ID use matchms.
+description: Mass spectrometry library toolkit for file I/O, signal processing, feature detection, peptide/protein identification, and quantification modules. Use as pyOpenMS/OpenMS building blocks. End-to-end proteomics/metabolomics workflow orchestration belongs to proteomics-metabolomics-workflows. For simple spectral comparison and metabolite candidate ranking use matchms.
 license: 3 clause BSD license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # PyOpenMS
@@ -16,6 +11,8 @@ metadata:
 ## Overview
 
 PyOpenMS provides Python bindings to the OpenMS library for computational mass spectrometry, enabling analysis of proteomics and metabolomics data. Use for handling mass spectrometry file formats, processing spectral data, detecting features, identifying peptides/proteins, and performing quantitative analysis.
+
+This skill provides direct pyOpenMS operations; full pipeline orchestration, cross-tool sequencing, and report-level interpretation are owned by `proteomics-metabolomics-workflows`.
 
 ## Installation
 

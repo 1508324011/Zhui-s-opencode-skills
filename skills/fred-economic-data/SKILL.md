@@ -1,14 +1,9 @@
 ---
 name: fred-economic-data
-description: Query FRED (Federal Reserve Economic Data) API for 800,000+ economic
-  time series from 100+ sources. Access GDP, unemployment, inflation, interest rates,
-  exchange rates, housing, and regional data. Use for macroeconomic analysis, financial
-  research, policy studies, economic forecasting, and academic research requiring
-  U.S. and international economic indicators.
+description: Query FRED (Federal Reserve Economic Data) API for 800,000+ economic time series from 100+ sources. Access GDP, unemployment, inflation, interest rates, exchange rates, housing, and regional data. Use for macroeconomic analysis, financial research, policy studies, economic forecasting, and academic research requiring U.S. and international economic indicators.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # FRED Economic Data Access

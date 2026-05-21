@@ -1,12 +1,9 @@
 ---
 name: ensembl-database
-description: Query Ensembl genome database REST API for 250+ species. Gene lookups,
-  sequence retrieval, variant analysis, comparative genomics, orthologs, VEP predictions,
-  for genomic research.
+description: Query Ensembl genome database REST API for 250+ species. Gene lookups, sequence retrieval, variant analysis, comparative genomics, orthologs, VEP predictions, for genomic research. For sequencing read preprocessing and primary variant calling workflows use ngs-read-processing and variant-calling.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Ensembl Database
@@ -27,6 +24,7 @@ This skill should be used when:
 - Converting coordinates between genome assemblies (e.g., GRCh37 to GRCh38)
 - Performing comparative genomics analyses
 - Integrating Ensembl data into genomic research pipelines
+- Use for annotation/query and comparative genomics after or alongside variant calling, not for executing read-to-variant pipelines
 
 ## Core Capabilities
 

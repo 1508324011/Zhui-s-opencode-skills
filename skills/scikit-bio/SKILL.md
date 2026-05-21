@@ -1,12 +1,9 @@
 ---
 name: scikit-bio
-description: Biological data toolkit. Sequence analysis, alignments, phylogenetic
-  trees, diversity metrics (alpha/beta, UniFrac), ordination (PCoA), PERMANOVA, FASTA/Newick
-  I/O, for microbiome analysis.
+description: Biological data toolkit. Sequence analysis, alignments, phylogenetic trees, diversity metrics (alpha/beta, UniFrac), ordination (PCoA), PERMANOVA, FASTA/Newick I/O, for microbiome analysis. For end-to-end 16S/ITS or shotgun microbiome/metagenomics workflows with DADA2, QIIME2, Kraken2, MetaPhlAn, HUMAnN, Bracken, AMR, strain tracking, or compositional differential abundance, use microbiome-metagenomics-workflows.
 license: BSD-3-Clause license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # scikit-bio
@@ -28,6 +25,7 @@ This skill should be used when the user:
 - Analyzes microbiome or community ecology data
 - Works with protein embeddings from language models
 - Needs to manipulate biological data tables
+- Scope boundary: use this skill for library/statistics/file APIs; use `microbiome-metagenomics-workflows` for end-to-end microbial community workflows from reads or feature tables to taxonomy, diversity, differential abundance, functional profiling, AMR, strain tracking, or reports.
 
 ## Core Capabilities
 

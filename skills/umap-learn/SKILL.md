@@ -1,12 +1,9 @@
 ---
 name: umap-learn
-description: UMAP dimensionality reduction. Fast nonlinear manifold learning for 2D/3D
-  visualization, clustering preprocessing (HDBSCAN), supervised/parametric UMAP, for
-  high-dimensional data.
+description: UMAP dimensionality reduction. Fast nonlinear manifold learning for 2D and 3D visualization, clustering preprocessing with HDBSCAN, supervised UMAP, and parametric UMAP for high-dimensional data. For single-cell workflow decisions use single-cell-workflows or scanpy; for spatial transcriptomics workflow decisions use spatial-transcriptomics.
 license: BSD-3-Clause license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # UMAP-Learn

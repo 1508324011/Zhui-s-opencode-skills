@@ -1,13 +1,9 @@
 ---
 name: anndata
-description: Data structure for annotated matrices in single-cell analysis. Use when
-  working with .h5ad files or integrating with the scverse ecosystem. This is the
-  data format skill—for analysis workflows use scanpy; for probabilistic models use
-  scvi-tools; for population-scale queries use cellxgene-census.
+description: Data structure for annotated matrices in single-cell and spatial analysis. Use when working with h5ad, zarr, AnnData objects, backed mode, layers, obs, var, obsm, obsp, and scverse interoperability. This is the data format skill; for full single-cell workflows use single-cell-workflows, for spatial workflows use spatial-transcriptomics, for Scanpy APIs use scanpy.
 license: BSD-3-Clause license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # AnnData
@@ -21,11 +17,13 @@ AnnData is a Python package for handling annotated data matrices, storing experi
 Use this skill when:
 - Creating, reading, or writing AnnData objects
 - Working with h5ad, zarr, or other genomics data formats
-- Performing single-cell RNA-seq analysis
+- Preparing AnnData inputs and outputs for single-cell or spatial analysis, not planning the full workflow
 - Managing large datasets with sparse matrices or backed mode
 - Concatenating multiple datasets or experimental batches
 - Subsetting, filtering, or transforming annotated data
 - Integrating with scanpy, scvi-tools, or other scverse ecosystem tools
+
+For end-to-end scRNA-seq, CITE-seq, multiome, annotation, or spatial transcriptomics analysis, use `single-cell-workflows` or `spatial-transcriptomics` as the top-level workflow skill and use this skill only for AnnData structure and storage details.
 
 ## Installation
 

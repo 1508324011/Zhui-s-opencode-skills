@@ -1,13 +1,9 @@
 ---
 name: statsmodels
-description: Statistical models library for Python. Use when you need specific model
-  classes (OLS, GLM, mixed models, ARIMA) with detailed diagnostics, residuals, and
-  inference. Best for econometrics, time series, rigorous inference with coefficient
-  tables. For guided statistical test selection with APA reporting use statistical-analysis.
+description: Statistical models library for Python. Use when you need specific model classes such as OLS, GLM, mixed models, and ARIMA with diagnostics, residuals, inference, and coefficient tables. For guided statistical test selection with APA reporting use statistical-analysis. For bulk omics count-matrix differential, time-course-to-pathway, or enrichment workflows use omics-differential-workflows. For domain-specific causal genomics workflow orchestration, use causal-genomics-workflows.
 license: BSD-3-Clause license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Statsmodels: Statistical Modeling and Econometrics
@@ -27,8 +23,9 @@ This skill should be used when:
 - Testing model assumptions (heteroskedasticity, autocorrelation, normality)
 - Detecting outliers and influential observations
 - Comparing models (AIC/BIC, likelihood ratio tests)
-- Estimating causal effects
+- Estimating causal effects in general statistical settings; for genomics-specific causal workflows such as MR, colocalization, fine-mapping, or mediation, use causal-genomics-workflows
 - Producing publication-ready statistical tables and inference
+- Implementing a specific statistical model after the workflow design is already defined; bulk omics DE, time-course, and pathway workflows should start with `omics-differential-workflows`
 
 ## Quick Start Guide
 

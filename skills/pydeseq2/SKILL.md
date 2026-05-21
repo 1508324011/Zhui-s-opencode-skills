@@ -1,19 +1,16 @@
 ---
 name: pydeseq2
-description: Differential gene expression analysis (Python DESeq2). Identify DE genes
-  from bulk RNA-seq counts, Wald tests, FDR correction, volcano/MA plots, for RNA-seq
-  analysis.
+description: Differential gene expression analysis with Python DESeq2. Use for PyDESeq2 implementation details, DESeq2 model setup, Wald tests, FDR correction, shrinkage, and result tables from prepared bulk RNA-seq counts. For complete FASTQ, quantification, count-QC, differential-to-pathway, or multi-tool bulk omics workflows use omics-differential-workflows. For RNA regulatory mechanism workflows such as splicing, regulatory network, miRNA, RBP, or cis-regulation integration, use rna-regulation-workflows.
 license: MIT license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # PyDESeq2
 
 ## Overview
 
-PyDESeq2 is a Python implementation of DESeq2 for differential expression analysis with bulk RNA-seq data. Design and execute complete workflows from data loading through result interpretation, including single-factor and multi-factor designs, Wald tests with multiple testing correction, optional apeGLM shrinkage, and integration with pandas and AnnData.
+PyDESeq2 is a Python implementation of DESeq2 for differential expression analysis with prepared bulk RNA-seq count data. Use this skill for DESeq2 object setup, design formulas, Wald tests, shrinkage, and result-table handling in Python. For study-level choices spanning FASTQ, quantification, sample QC, differential testing, visualization, and pathways, use `omics-differential-workflows` first.
 
 ## When to Use This Skill
 
@@ -22,8 +19,10 @@ This skill should be used when:
 - Comparing gene expression between experimental conditions (e.g., treated vs control)
 - Performing multi-factor designs accounting for batch effects or covariates
 - Converting R-based DESeq2 workflows to Python
-- Integrating differential expression analysis into Python-based pipelines
+- Implementing the PyDESeq2 portion of Python-based pipelines after counts and metadata are defined
 - Users mention "DESeq2", "differential expression", "RNA-seq analysis", or "PyDESeq2"
+- Complete bulk RNA-seq or omics workflows from FASTQ/quantification/count QC to pathway interpretation should use `omics-differential-workflows` before returning here for PyDESeq2 API details
+- End-to-end RNA regulation mechanism inference should use `rna-regulation-workflows` rather than this DESeq2 API skill
 
 ## Quick Start Workflow
 

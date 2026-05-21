@@ -1,11 +1,9 @@
 ---
 name: deeptools
-description: NGS analysis toolkit. BAM to bigWig conversion, QC (correlation, PCA,
-  fingerprints), heatmaps/profiles (TSS, peaks), for ChIP-seq, RNA-seq, ATAC-seq visualization.
+description: NGS analysis toolkit for concrete deepTools operations. Use for BAM-to-bigWig conversion, coverage tracks, QC correlation, PCA, fingerprints, computeMatrix, heatmaps, and profiles around TSS or peaks for ChIP-seq, RNA-seq, and ATAC-seq. For assay-level ATAC, ChIP, Hi-C, or methylation workflows use epigenomics-workflows.
 license: BSD license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # deepTools: NGS Data Analysis Toolkit
@@ -29,8 +27,10 @@ This skill should be used when:
 - **Quality control**: "check ChIP quality", "compare replicates", "assess sequencing depth", "QC analysis"
 - **Visualization**: "create heatmap around TSS", "plot ChIP signal", "visualize enrichment", "generate profile plot"
 - **Sample comparison**: "compare treatment vs control", "correlate samples", "PCA analysis"
-- **Analysis workflows**: "analyze ChIP-seq data", "RNA-seq coverage", "ATAC-seq analysis", "complete workflow"
+- **Workflow support steps**: deepTools-specific QC, coverage, matrix, heatmap, and profile steps inside ChIP-seq, RNA-seq, or ATAC-seq workflows, not complete assay orchestration
 - **Working with specific file types**: BAM files, bigWig files, BED region files in genomics context
+
+For complete ATAC-seq, ChIP-seq, Hi-C, or methylation workflow planning, use `epigenomics-workflows` first and return here for the concrete deepTools commands.
 
 ## Quick Start
 

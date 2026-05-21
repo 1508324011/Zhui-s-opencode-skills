@@ -1,13 +1,9 @@
 ---
 name: biopython
-description: Comprehensive molecular biology toolkit. Use for sequence manipulation,
-  file parsing (FASTA/GenBank/PDB), phylogenetics, and programmatic NCBI/PubMed access
-  (Bio.Entrez). Best for batch processing, custom bioinformatics pipelines, BLAST
-  automation. For quick lookups use gget; for multi-service integration use bioservices.
+description: Comprehensive molecular biology toolkit. Use for sequence manipulation, file parsing (FASTA/GenBank/PDB), phylogenetics, and programmatic NCBI/PubMed access (Bio.Entrez). Best for batch processing, custom bioinformatics pipelines, BLAST automation. For quick lookups use gget; for multi-service integration use bioservices. For BAM/CRAM/VCF file-centric operations use pysam; for production read-processing and variant-calling pipelines use ngs-read-processing or variant-calling.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Biopython: Computational Molecular Biology in Python
@@ -31,6 +27,7 @@ Use this skill when:
 - Calculating sequence statistics (GC content, molecular weight, melting temperature, etc.)
 - Performing structural bioinformatics tasks
 - Working with population genetics data
+- Library-level sequence/database programming; not a replacement for dedicated NGS pipeline orchestration skills
 - Any other computational molecular biology task
 
 ## Core Capabilities

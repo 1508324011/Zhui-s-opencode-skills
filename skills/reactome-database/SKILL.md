@@ -1,12 +1,9 @@
 ---
 name: reactome-database
-description: Query Reactome REST API for pathway analysis, enrichment, gene-pathway
-  mapping, disease pathways, molecular interactions, expression analysis, for systems
-  biology studies.
+description: Query Reactome REST API for pathway lookup, enrichment service calls, gene-pathway mapping, disease pathways, molecular interactions, and expression analysis endpoints. Use for direct Reactome API work on prepared identifiers or expression inputs. For DE-to-pathway, ORA/GSEA, or count-matrix-to-interpretation workflows use omics-differential-workflows.
 license: Unknown
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Reactome Database
@@ -25,6 +22,7 @@ This skill should be used when:
 - Exploring disease-related pathways and mechanisms
 - Visualizing analysis results in the Reactome Pathway Browser
 - Conducting comparative pathway analysis across species
+- Direct Reactome API or browser work on prepared gene/protein lists; upstream DE, ranked-list construction, and pathway workflow design should use `omics-differential-workflows`
 
 ## Core Capabilities
 

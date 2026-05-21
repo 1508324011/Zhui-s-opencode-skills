@@ -1,14 +1,9 @@
 ---
 name: scientific-visualization
-description: Meta-skill for publication-ready figures. Use when creating journal submission
-  figures requiring multi-panel layouts, significance annotations, error bars, colorblind-safe
-  palettes, and specific journal formatting (Nature, Science, Cell). Orchestrates
-  matplotlib/seaborn/plotly with publication styles. For quick exploration use seaborn
-  or plotly directly.
+description: Meta-skill for publication-ready figures. Use when creating journal submission figures requiring multi-panel layouts, significance annotations, error bars, colorblind-safe palettes, and specific journal formatting. Orchestrates matplotlib, seaborn, and plotly with publication styles. For single-cell, spatial, omics differential, or epigenomics workflow planning use the matching workflow skill first; use this skill to polish final figures.
 license: MIT license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Scientific Visualization
@@ -28,6 +23,8 @@ This skill should be used when:
 - Following specific publication guidelines
 - Improving existing figures to meet publication standards
 - Creating figures that need to work in both color and grayscale
+
+For single-cell, spatial transcriptomics, bulk omics differential, or epigenomics analysis decisions, use `single-cell-workflows`, `spatial-transcriptomics`, `omics-differential-workflows`, or `epigenomics-workflows` first. Return here only when the analysis is ready for publication-grade figure styling and export.
 
 ## Quick Start Guide
 

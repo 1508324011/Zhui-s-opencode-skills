@@ -1,13 +1,9 @@
 ---
 name: statistical-analysis
-description: Guided statistical analysis with test selection and reporting. Use when
-  you need help choosing appropriate tests for your data, assumption checking, power
-  analysis, and APA-formatted results. Best for academic research reporting, test
-  selection guidance. For implementing specific models programmatically use statsmodels.
+description: Guided statistical analysis with test selection and reporting. Use when you need help choosing appropriate tests for your data, assumption checking, power analysis, and APA-formatted results. Best for academic research reporting and test selection guidance. For implementing specific models programmatically use statsmodels; for bulk omics differential, time-course, and pathway workflows use omics-differential-workflows. For genomics-specific causal inference workflows, use causal-genomics-workflows.
 license: MIT license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # Statistical Analysis
@@ -25,7 +21,9 @@ This skill should be used when:
 - Checking statistical assumptions and diagnostics
 - Calculating effect sizes and conducting power analyses
 - Reporting statistical results in APA format
-- Analyzing experimental or observational data for research
+- Selecting tests, checking assumptions, and reporting results for already defined research analyses
+- Bulk omics differential expression, time-course, and pathway workflows should use `omics-differential-workflows` rather than this generic statistics skill
+- Genomics causal-inference workflow design and evidence integration should use `causal-genomics-workflows` rather than this generic statistics skill
 
 ---
 

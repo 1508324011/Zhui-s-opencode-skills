@@ -1,13 +1,9 @@
 ---
 name: pathml
-description: Full-featured computational pathology toolkit. Use for advanced WSI analysis
-  including multiplexed immunofluorescence (CODEX, Vectra), nucleus segmentation,
-  tissue graph construction, and ML model training on pathology data. Supports 160+
-  slide formats. For simple tile extraction from H&E slides, histolab may be simpler.
+description: Full-featured computational pathology toolkit. Use for advanced WSI analysis including multiplexed immunofluorescence, CODEX, Vectra, nucleus segmentation, tissue graph construction, and ML model training on pathology data. Supports 160 plus slide formats. For simple tile extraction from H&E slides, histolab may be simpler; for spatial transcriptomics FOV, coordinate, and image-integration workflows use spatial-transcriptomics.
 license: GPL-2.0 license
-compatibility: opencode
 metadata:
-  skill-author: K-Dense Inc.
+    skill-author: K-Dense Inc.
 ---
 
 # PathML
@@ -28,6 +24,8 @@ Apply this skill for:
 - Quantifying marker expression from multiplex immunofluorescence
 - Managing large-scale pathology datasets with HDF5 storage
 - Tile-based analysis and stitching operations
+
+When pathology image processing is part of a spatial transcriptomics or FOV-stable spatial omics workflow, use `spatial-transcriptomics` as the top-level planner and return here for detailed PathML image-processing implementation.
 
 ## Core Capabilities
 
