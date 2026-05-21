@@ -2,77 +2,74 @@
 // 此文件不含敏感信息，可以直接提交到版本控制
 // 
 // 模型说明：
-// - gmn/gpt-5.3-codex: GPT-5.3 Codex (400K context, xhigh reasoning) - 最强推理/架构
-// - gmn/gpt-5.2-codex: GPT-5.2 Codex - 标准推理
-// - bailian-coding-plan/qwen3.5-plus: Qwen3.5 Plus（主力平衡）
-// - bailian-coding-plan/kimi-k2.5: Kimi K2.5（推理/分析/写作）
-// - bailian-coding-plan/glm-5: GLM-5（复杂推理）
-// - bailian-coding-plan/MiniMax-M2.5: MiniMax M2.5（轻量快速）
+// - zhui/gpt-5.3-codex: 深度推理 / 架构设计 / 规划
+// - zhui/gpt-5.4: 平衡型主力模型（检索、视觉、收尾）
+// - zhui/gpt-5.5: 主力执行 / 检查 / 调试
 //
 // 分配策略：
-// - 深度推理/架构设计 → GPT-5.3 Codex (400K context + xhigh reasoning)
-// - 代码审查/质量检查 → GPT-5.3 Codex (大上下文理解)
-// - 日常任务 → Qwen3.5 Plus (平衡性能/成本)
-// - 快速任务 → MiniMax-M2.5 (经济高效)
+// - 深度推理/架构设计 → zhui/gpt-5.3-codex
+// - 代码实现/检查/调试 → zhui/gpt-5.5
+// - 日常任务/外部检索/多模态 → zhui/gpt-5.4
+// - 只保留 zhui provider 示例；模板里示例包含 baseURL、apiKey 占位和 setCacheKey，不包含真实 key
 
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "bailian-coding-plan/qwen3.5-plus"
+      "model": "zhui/gpt-5.3-codex"
     },
     "hephaestus": {
-      "model": "gmn/gpt-5.3-codex"
+      "model": "zhui/gpt-5.5"
     },
     "oracle": {
-      "model": "gmn/gpt-5.3-codex"
+      "model": "zhui/gpt-5.5"
     },
     "librarian": {
-      "model": "bailian-coding-plan/MiniMax-M2.5"
+      "model": "zhui/gpt-5.3-codex"
     },
     "explore": {
-      "model": "bailian-coding-plan/MiniMax-M2.5"
+      "model": "zhui/gpt-5.3-codex"
     },
     "multimodal-looker": {
-      "model": "bailian-coding-plan/qwen3.5-plus"
+      "model": "zhui/gpt-5.4"
     },
     "prometheus": {
-      "model": "bailian-coding-plan/kimi-k2.5"
+      "model": "zhui/gpt-5.4"
     },
     "metis": {
-      "model": "gmn/gpt-5.3-codex"
+      "model": "zhui/gpt-5.3-codex"
     },
     "momus": {
-      "model": "gmn/gpt-5.3-codex"
+      "model": "zhui/gpt-5.3-codex"
     },
     "atlas": {
-      "model": "bailian-coding-plan/qwen3.5-plus"
+      "model": "zhui/gpt-5.3-codex"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "bailian-coding-plan/kimi-k2.5"
+      "model": "zhui/gpt-5.4"
     },
     "ultrabrain": {
-      "model": "gmn/gpt-5.3-codex"
+      "model": "zhui/gpt-5.4"
     },
     "deep": {
-      "model": "gmn/gpt-5.3-codex"
+      "model": "zhui/gpt-5.5"
     },
     "artistry": {
-      "model": "gmn/gpt-5.2-codex"
+      "model": "zhui/gpt-5.3-codex"
     },
     "quick": {
-      "model": "bailian-coding-plan/MiniMax-M2.5"
+      "model": "zhui/gpt-5.3-codex"
     },
     "unspecified-low": {
-      "model": "bailian-coding-plan/MiniMax-M2.5"
+      "model": "zhui/gpt-5.3-codex"
     },
     "unspecified-high": {
-      "model": "bailian-coding-plan/qwen3.5-plus"
+      "model": "zhui/gpt-5.4"
     },
     "writing": {
-      "model": "bailian-coding-plan/kimi-k2.5"
+      "model": "zhui/gpt-5.3-codex"
     }
   }
 }
