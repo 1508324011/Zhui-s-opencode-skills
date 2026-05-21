@@ -12,9 +12,10 @@
 // - 日常任务/外部检索/多模态 → zhui/gpt-5.4
 // - 只保留 zhui provider 示例；模板里示例包含 baseURL、apiKey 占位和 setCacheKey，不包含真实 key
 //
-// Trellis 子代理模型维护入口：
-// - 使用 categories.trellis-* 作为 Trellis research / implement / check / debug / finish 的单一配置源
-// - 修改这些模型后，运行：python3 ./.trellis/scripts/sync_trellis_models_from_omo.py
+// Trellis 子代理模型说明：
+// - categories.trellis-* 仅作为本地参考预设，便于让 OMO 分类命名与 Trellis 阶段保持一致
+// - vendored Trellis runtime 文件保留各自显式模型默认值；本仓库不再自动把这些分类回写到 Trellis Markdown/runtime
+// - 若后续 Trellis 上游有更新，先直接复核 runtime 文件，再决定是否调整本地模型默认值
 
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",

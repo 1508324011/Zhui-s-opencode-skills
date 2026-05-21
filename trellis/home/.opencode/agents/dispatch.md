@@ -218,5 +218,5 @@ If a subagent reports failure, read the output and decide:
 
 1. **Do not read spec/requirement files directly** - Let Hook inject to subagents
 2. **Only commit via create-pr action** - Use `multi_agent/create_pr.py` at the end of pipeline
-3. **All subagent models are synced from `~/.config/opencode/oh-my-openagent.jsonc` via `categories.trellis-*`**
+3. **Treat model selections in these Trellis runtime files as explicit local defaults; review them directly when upstream Trellis changes**
 4. **Keep dispatch logic simple** - Complex logic belongs in subagents
